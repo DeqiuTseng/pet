@@ -3,32 +3,36 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="DayTicker 倒数日 App：记录生日、纪念日、节日与重要日程，支持公历/农历、全球节日库与文化介绍，帮你不错过每个重要日子。">
+  <meta name="description" content="灵宠 PocketPet：零门槛虚拟宠物陪伴 App。给它取个名字，全屏互动，本地动画，无需登录。">
   <meta name="robots" content="index,follow">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="DayTicker">
-  <meta property="og:title" content="DayTicker 倒数日 App - 生日纪念日倒计时与全球节日助手">
-  <meta property="og:description" content="记录生日、纪念日、节日与重要日程，支持公历/农历与全球节日文化介绍。下载 DayTicker，让每个重要日子都值得期待。">
-  <meta property="og:url" content="https://deqiutseng.github.io/">
-  <meta property="og:image" content="https://deqiutseng.github.io/assets/images/logo.png">
+  <meta property="og:site_name" content="PocketPet">
+  <meta property="og:title" content="灵宠 PocketPet - 口袋里的虚拟宠物陪伴">
+  <meta property="og:description" content="一只小狗正在等你。无需注册，取名即陪伴，全屏动画与轻触互动，让宠物始终在场。">
+  <meta property="og:url" content="https://deqiutseng.github.io/pet/">
+  <meta property="og:image" content="https://deqiutseng.github.io/pet/assets/images/logo.png">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="DayTicker 倒数日 App - 生日纪念日倒计时与全球节日助手">
-  <meta name="twitter:description" content="记录生日、纪念日、节日与重要日程，支持公历/农历与全球节日文化介绍。下载 DayTicker，让每个重要日子都值得期待。">
-  <meta name="twitter:image" content="https://deqiutseng.github.io/assets/images/logo.png">
-  <title>DayTicker 倒数日 App - 生日纪念日倒计时与全球节日助手</title>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1133120617497105"
-    crossorigin="anonymous"></script>
+  <meta name="twitter:title" content="灵宠 PocketPet - 口袋里的虚拟宠物陪伴">
+  <meta name="twitter:description" content="一只小狗正在等你。无需注册，取名即陪伴，全屏动画与轻触互动。">
+  <meta name="twitter:image" content="https://deqiutseng.github.io/pet/assets/images/logo.png">
+  <title>灵宠 PocketPet - 口袋里的虚拟宠物陪伴</title>
+  <link rel="icon" href="assets/images/logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #fff9f2;
+      --canvas: #fff8f2;
       --surface: #ffffff;
-      --text: #1f2328;
-      --muted: #5f6670;
-      --primary: #ff8a00;
-      --primary-dark: #e87400;
-      --line: #f1e7da;
-      --shadow: 0 10px 30px rgba(20, 20, 20, 0.08);
-      --radius: 18px;
+      --ink: #2b2421;
+      --muted: #8e7c74;
+      --accent: #f07c5a;
+      --accent-dark: #d96544;
+      --accent-soft: #fbe0d5;
+      --line: #eadbd2;
+      --video-bg: #3b2f2b;
+      --shadow: 0 14px 40px rgba(43, 36, 33, 0.08);
+      --radius: 20px;
       --max: 1120px;
     }
 
@@ -40,11 +44,19 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
-        "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, var(--bg) 0%, #ffffff 400px, #ffffff 100%);
-      line-height: 1.6;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, var(--canvas) 0%, #ffffff 520px, #ffffff 100%);
+      line-height: 1.65;
+    }
+
+    h1,
+    h2,
+    h3,
+    .brand span,
+    .step-num {
+      font-family: "Fraunces", Georgia, "Times New Roman", serif;
     }
 
     a {
@@ -61,9 +73,9 @@
       position: sticky;
       top: 0;
       z-index: 30;
-      backdrop-filter: blur(8px);
-      background: rgba(255, 255, 255, 0.82);
-      border-bottom: 1px solid rgba(241, 231, 218, 0.8);
+      backdrop-filter: blur(10px);
+      background: rgba(255, 248, 242, 0.88);
+      border-bottom: 1px solid rgba(234, 219, 210, 0.9);
     }
 
     .topbar-inner {
@@ -79,14 +91,16 @@
       align-items: center;
       gap: 10px;
       font-weight: 700;
+      font-size: 18px;
     }
 
     .logo {
-      width: 34px;
-      height: 34px;
-      border-radius: 5px;
-      object-fit: contain;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      object-fit: cover;
       display: block;
+      box-shadow: 0 4px 12px rgba(240, 124, 90, 0.25);
     }
 
     .nav {
@@ -98,12 +112,12 @@
     }
 
     .nav a:hover {
-      color: var(--text);
+      color: var(--ink);
     }
 
     .lang-switch {
       display: inline-flex;
-      border: 1px solid #eadfce;
+      border: 1px solid var(--line);
       border-radius: 999px;
       overflow: hidden;
       background: #fff;
@@ -115,23 +129,23 @@
       padding: 7px 12px;
       font-size: 13px;
       cursor: pointer;
-      color: #5f6670;
+      color: var(--muted);
     }
 
     .lang-btn.active {
-      background: #fff3e5;
-      color: #8f4b00;
+      background: var(--accent-soft);
+      color: #9a3f22;
       font-weight: 600;
     }
 
     .hero {
-      padding: 64px 0 44px;
+      padding: 56px 0 36px;
     }
 
     .hero-grid {
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
-      gap: 28px;
+      gap: 32px;
       align-items: center;
     }
 
@@ -143,173 +157,186 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      border: 1px solid #ffd6a5;
+      border: 1px solid #f5c4b0;
       border-radius: 999px;
-      padding: 6px 12px;
+      padding: 6px 14px;
       font-size: 13px;
-      color: #b15d00;
-      background: #fff3e5;
-      margin-bottom: 16px;
+      color: #b04a28;
+      background: var(--accent-soft);
+      margin-bottom: 18px;
     }
 
     h1 {
       margin: 0 0 16px;
-      line-height: 1.22;
-      font-size: clamp(30px, 5vw, 50px);
+      line-height: 1.18;
+      font-size: clamp(32px, 5vw, 52px);
       letter-spacing: -0.02em;
     }
 
     .lead {
       margin: 0;
       color: var(--muted);
-      font-size: clamp(15px, 2vw, 18px);
-      max-width: 58ch;
+      font-size: clamp(16px, 2vw, 18px);
+      max-width: 52ch;
     }
 
     .cta-row {
-      margin-top: 26px;
+      margin-top: 28px;
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       flex-wrap: wrap;
-      max-width: 100%;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      border-radius: 12px;
-      padding: 13px 20px;
+      gap: 8px;
+      border-radius: 14px;
+      padding: 13px 22px;
       font-weight: 600;
+      font-size: 15px;
       transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
       border: 1px solid transparent;
-      max-width: 100%;
-    }
-
-    .store-icon {
-      width: 18px;
-      height: 18px;
-      display: block;
-      object-fit: contain;
-      flex-shrink: 0;
     }
 
     .btn:focus-visible {
-      outline: 3px solid #ffd19a;
+      outline: 3px solid #ffc9b5;
       outline-offset: 2px;
     }
 
     .btn-primary {
-      background: var(--primary);
+      background: var(--accent);
       color: #fff;
-      box-shadow: 0 10px 24px rgba(255, 136, 0, 0.28);
+      box-shadow: 0 12px 28px rgba(240, 124, 90, 0.32);
     }
 
     .btn-primary:hover {
-      background: var(--primary-dark);
+      background: var(--accent-dark);
       transform: translateY(-1px);
     }
 
     .btn-ghost {
       background: #fff;
-      border-color: #eadfce;
-      color: #302921;
+      border-color: var(--line);
+      color: var(--ink);
     }
 
     .btn-ghost:hover {
-      background: #fff9ef;
+      background: var(--canvas);
     }
 
-    .btn-appstore {
-      background: #1f2328;
-      color: #fff;
-      box-shadow: 0 10px 24px rgba(31, 35, 40, 0.22);
-    }
-
-    .btn-appstore:hover {
-      background: #0f1216;
-      transform: translateY(-1px);
-    }
-
-    .btn-apk {
-      background: #4ea431;
-      color: #fff;
-      box-shadow: 0 10px 24px rgba(78, 164, 49, 0.24);
-    }
-
-    .btn-apk:hover {
-      background: #3f8d28;
-      transform: translateY(-1px);
+    .btn-soon {
+      background: #f3ebe4;
+      color: #9a857c;
+      cursor: default;
+      border-color: var(--line);
     }
 
     .meta {
       margin-top: 14px;
-      color: #6b7280;
+      color: var(--muted);
       font-size: 13px;
     }
 
-    .preview {
-      background: linear-gradient(180deg, #fff, #fff7eb);
+    .hero-visual {
+      position: relative;
+    }
+
+    .phone-frame {
+      background: linear-gradient(165deg, #fff 0%, #fff3ea 100%);
       border: 1px solid var(--line);
-      border-radius: 28px;
+      border-radius: 32px;
       box-shadow: var(--shadow);
-      padding: 22px;
+      padding: 14px;
+      max-width: 340px;
+      margin: 0 auto;
     }
 
-    .preview-title {
-      margin: 0 0 14px;
-      font-weight: 700;
-      font-size: 20px;
-    }
-
-    .preview-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .shot-card {
-      background: #ffffff;
-      border: 1px solid #f4ebdf;
-      border-radius: 14px;
-      padding: 8px;
-      box-shadow: 0 6px 18px rgba(30, 20, 0, 0.06);
-    }
-
-    .shot-card img {
-      width: 100%;
-      display: block;
-      border-radius: 10px;
+    .phone-screen {
+      border-radius: 24px;
+      overflow: hidden;
+      background: var(--video-bg);
       aspect-ratio: 9 / 19.5;
-      object-fit: cover;
-      object-position: top;
-      background: #f6f1ea;
+      position: relative;
     }
 
-    .shot-caption {
-      margin: 8px 4px 2px;
-      font-size: 13px;
-      color: #6b7280;
-      text-align: center;
+    .phone-screen img.hero-pet {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .phone-overlay {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 16px;
+      background: linear-gradient(180deg, transparent 0%, rgba(59, 47, 43, 0.72) 100%);
+      color: #fff;
+    }
+
+    .phone-overlay .pet-name {
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .phone-overlay .companion {
+      font-size: 12px;
+      opacity: 0.88;
+      margin-top: 2px;
+    }
+
+    .paw-badge {
+      position: absolute;
+      right: -8px;
+      bottom: 48px;
+      width: 72px;
+      filter: drop-shadow(0 8px 16px rgba(43, 36, 33, 0.18));
+    }
+
+    .float-card {
+      position: absolute;
+      left: -18px;
+      top: 24px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px 14px;
+      box-shadow: 0 10px 24px rgba(43, 36, 33, 0.08);
+      max-width: 180px;
+    }
+
+    .float-card strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .float-card span {
+      font-size: 12px;
+      color: var(--muted);
     }
 
     section {
-      padding: 28px 0;
+      padding: 32px 0;
     }
 
     .section-head {
-      margin: 0 0 14px;
-      font-size: clamp(24px, 3vw, 34px);
-      line-height: 1.25;
+      margin: 0 0 12px;
+      font-size: clamp(26px, 3.2vw, 38px);
+      line-height: 1.22;
       letter-spacing: -0.02em;
     }
 
     .section-sub {
-      margin: 0 0 26px;
+      margin: 0 0 28px;
       color: var(--muted);
-      max-width: 72ch;
+      max-width: 68ch;
     }
 
     .feature-grid {
@@ -319,140 +346,147 @@
     }
 
     .card {
-      background: #fff;
+      background: var(--surface);
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 18px;
-      box-shadow: 0 6px 20px rgba(50, 40, 20, 0.04);
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(43, 36, 33, 0.04);
     }
 
     .card h3 {
-      margin: 8px 0 8px;
+      margin: 10px 0 8px;
       font-size: 18px;
     }
 
     .card p {
       margin: 0;
-      color: #5f6670;
+      color: var(--muted);
       font-size: 15px;
     }
 
     .card .icon {
-      font-size: 26px;
+      font-size: 28px;
       line-height: 1;
     }
 
-    .list-wrap {
+    .steps {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
     }
 
-    .list-panel {
-      background: #fff;
+    .step {
+      background: linear-gradient(180deg, #fff, #fff9f4);
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 18px;
+      padding: 22px;
     }
 
-    .list-panel ul {
-      margin: 10px 0 0;
-      padding-left: 20px;
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: #b04a28;
+      font-weight: 700;
+      margin-bottom: 12px;
     }
 
-    .list-panel li + li {
+    .step h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .compare-panel {
+      border-radius: var(--radius);
+      padding: 22px;
+      border: 1px solid var(--line);
+    }
+
+    .compare-panel.us {
+      background: linear-gradient(145deg, #fff3ec, #ffe8dc);
+      border-color: #f5c4b0;
+    }
+
+    .compare-panel.them {
+      background: #fff;
+    }
+
+    .compare-panel h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+    }
+
+    .compare-panel ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .compare-panel li + li {
       margin-top: 8px;
     }
 
     .cta {
-      padding: 30px 0 80px;
+      padding: 28px 0 72px;
     }
 
     .cta-box {
-      background: linear-gradient(145deg, #fff3df, #ffe6bf);
-      border: 1px solid #ffd9a4;
-      border-radius: 24px;
-      padding: clamp(20px, 5vw, 34px);
+      background: linear-gradient(145deg, #fff0e8, #ffe2d4);
+      border: 1px solid #f5c4b0;
+      border-radius: 26px;
+      padding: clamp(24px, 5vw, 40px);
       display: grid;
-      /* minmax(0, …) 避免 Safari 中 grid 子项 min-content 把整行撑出父级 */
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, min(100%, 280px));
-      gap: 16px;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, min(100%, 260px));
+      gap: 20px;
       align-items: center;
-      min-width: 0;
     }
 
     .cta-box > * {
       min-width: 0;
     }
 
-    .cta-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      align-items: stretch;
-      width: 100%;
-      max-width: 100%;
-      min-width: 0;
-      box-sizing: border-box;
-    }
-
-    .cta-buttons .btn {
-      width: 100%;
-      max-width: 100%;
-      box-sizing: border-box;
-    }
-
-    @media (min-width: 981px) {
-      .cta-buttons {
-        align-items: flex-end;
-      }
-    }
-
     .cta-title {
-      margin: 0 0 8px;
-      font-size: clamp(24px, 3.3vw, 36px);
-      line-height: 1.2;
+      margin: 0 0 10px;
+      font-size: clamp(26px, 3.4vw, 38px);
+      line-height: 1.18;
     }
 
     .cta-text {
       margin: 0;
-      color: #5a4c3d;
-      max-width: 44ch;
+      color: #6f5c54;
+      max-width: 46ch;
     }
 
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 22px 0 28px;
-      color: #7a8089;
-      font-size: 14px;
-    }
-
-    footer .container {
-      text-align: center;
-    }
-
-    .beian-links {
-      margin-top: 10px;
-      line-height: 1.8;
+    .cta-actions {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      column-gap: 12px;
+      flex-direction: column;
+      gap: 12px;
     }
 
-    .beian-links a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .beian-links a:hover {
-      text-decoration: underline;
+    .cta-actions .btn {
+      width: 100%;
     }
 
     .policy-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 14px;
     }
 
     .faq-list {
@@ -465,8 +499,8 @@
 
     .faq-item {
       border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 14px;
+      border-radius: 14px;
+      padding: 16px;
       background: #fff;
     }
 
@@ -477,8 +511,23 @@
 
     .faq-item p {
       margin: 0;
-      color: #5f6670;
+      color: var(--muted);
       font-size: 14px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 22px 0 30px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    footer .container {
+      text-align: center;
+    }
+
+    footer a:hover {
+      color: var(--ink);
     }
 
     @media (max-width: 980px) {
@@ -486,45 +535,37 @@
         grid-template-columns: 1fr;
       }
 
-      .feature-grid {
+      .feature-grid,
+      .steps {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .list-wrap {
-        grid-template-columns: 1fr;
-      }
-
+      .compare-grid,
+      .policy-grid,
       .cta-box {
         grid-template-columns: 1fr;
       }
 
-      .policy-grid {
-        grid-template-columns: 1fr;
+      .float-card {
+        left: 8px;
+      }
+
+      .paw-badge {
+        right: 8px;
       }
     }
 
     @media (max-width: 640px) {
-      .topbar-inner {
-        min-height: 58px;
-      }
-
       .nav {
         display: none;
       }
 
-      .lang-btn {
-        padding: 7px 10px;
-      }
-
       .hero {
-        padding-top: 38px;
+        padding-top: 36px;
       }
 
-      .feature-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .preview-grid {
+      .feature-grid,
+      .steps {
         grid-template-columns: 1fr;
       }
 
@@ -535,31 +576,33 @@
       .cta-row {
         width: 100%;
       }
+
+      .float-card {
+        position: static;
+        margin-bottom: 12px;
+        max-width: none;
+      }
+
+      .paw-badge {
+        width: 56px;
+        right: 12px;
+        bottom: 36px;
+      }
     }
   </style>
-  <script>
-    var _hmt = _hmt || [];
-    (function () {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?70a8636950e0570e212ade16f5e5753d";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
 </head>
 <body>
   <header class="topbar">
     <div class="container topbar-inner">
-      <a class="brand" href="#top" aria-label="DayTicker 首页" data-i18n-aria="brand.aria">
-        <img class="logo" src="assets/images/logo.png" alt="DayTicker logo">
-        <span>DayTicker</span>
+      <a class="brand" href="#top" aria-label="PocketPet 首页" data-i18n-aria="brand.aria">
+        <img class="logo" src="assets/images/logo.png" alt="PocketPet logo">
+        <span data-i18n="brand.name">灵宠</span>
       </a>
       <nav class="nav" aria-label="主导航">
         <a href="#features" data-i18n="nav.features">核心功能</a>
-        <a href="#festivals" data-i18n="nav.festivals">节日亮点</a>
-        <a href="#users" data-i18n="nav.users">适用人群</a>
+        <a href="#how" data-i18n="nav.how">如何开始</a>
+        <a href="#why" data-i18n="nav.why">为什么选择</a>
         <a href="#support" data-i18n="nav.support">支持与 FAQ</a>
-        <a href="#download" data-i18n="nav.download">立即下载</a>
       </nav>
       <div class="lang-switch" role="group" aria-label="Language Switch">
         <button id="lang-zh" class="lang-btn" type="button">中文</button>
@@ -572,140 +615,124 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <span class="eyebrow" data-i18n="hero.eyebrow">倒数日 × 全球节日文化</span>
-          <h1 data-i18n-html="hero.title">把每个重要日子，<br>都变成值得期待的时刻</h1>
+          <span class="eyebrow" data-i18n="hero.eyebrow">零门槛 · 虚拟宠物陪伴</span>
+          <h1 data-i18n-html="hero.title">给它一个名字，<br>开始你的口袋陪伴</h1>
           <p class="lead" data-i18n="hero.lead">
-            DayTicker 是一款轻松添加倒计时的应用程序。快速记录生日、结婚纪念日、节日和任意重要日期，
-            支持公历与农历，并提供全球节日库与详细文化介绍，让时间管理更清晰、更有仪式感。
+            灵宠 PocketPet 是一款以陪伴感为核心的虚拟宠物 App。无需注册登录，两步完成初始化，
+            全屏本地动画让小狗始终在场，轻触爪垫即可互动。
           </p>
           <div class="cta-row">
-            <a
-              class="btn btn-primary"
-              href="https://play.google.com/store/apps/details?id=com.deqiutseng.luckyday"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="在 Google Play 下载 DayTicker"
-              data-i18n-aria="hero.downloadAria">
-              <img class="store-icon" src="./assets/images/GooglePlay.png" alt="" aria-hidden="true">
-              <span data-i18n="hero.downloadBtn">Google Play 下载</span>
-            </a>
-            <a
-              class="btn btn-appstore"
-              href="https://apps.apple.com/us/app/dayticker-countdown-days/id6761118370"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="在 App Store 下载 DayTicker"
-              data-i18n-aria="hero.appstoreAria">
-              <img class="store-icon" src="./assets/images/AppStore.png" alt="" aria-hidden="true">
-              <span data-i18n="hero.appstoreBtn">App Store 下载</span>
-            </a>
-            <!-- 本地 APK：暂时隐藏，需要时取消下方注释
-            <a
-              class="btn btn-apk"
-              href="./assets/apk/dayticker.apk"
-              download="dayticker.apk"
-              aria-label="下载 DayTicker APK 安装包"
-              data-i18n-aria="hero.apkAria">
-              <img class="store-icon" src="./assets/images/apk.png" alt="" aria-hidden="true">
-              <span data-i18n="hero.apkBtn">安卓下载</span>
-            </a>
-            -->
-            <a
-              class="btn btn-apk"
-              href="http://dayticker.net/assets/apk/dayticker.apk"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="下载 DayTicker APK 安装包"
-              data-i18n-aria="hero.apkAria">
-              <img class="store-icon" src="./assets/images/apk.png" alt="" aria-hidden="true">
-              <span data-i18n="hero.apkBtn">安卓下载</span>
-            </a>
-            <a class="btn btn-ghost" href="#features" data-i18n="hero.featureBtn">查看功能亮点</a>
+            <span class="btn btn-soon" data-i18n="hero.comingSoon">iOS / Android 即将上线</span>
+            <a class="btn btn-ghost" href="#features" data-i18n="hero.featureBtn">了解功能</a>
           </div>
-          <p class="meta" data-i18n="hero.meta">支持 Android 与 iPhone，网页在桌面浏览器和手机浏览器均可顺畅浏览。</p>
+          <p class="meta" data-i18n="hero.meta">支持 iOS 与 Android · 动画本地播放，不依赖网络 · 中英文双语</p>
         </div>
 
-        <aside class="preview" aria-label="应用截图预览" data-i18n-aria="preview.aria">
-          <p class="preview-title" data-i18n="preview.title">应用真实界面预览</p>
-          <div class="preview-grid">
-            <figure class="shot-card">
-              <img src="./assets/images/app-countdowns.avif" alt="DayTicker 节日页面截图" data-i18n-alt="preview.festivalAlt">
-              <figcaption class="shot-caption" data-i18n="preview.festivalCaption">节日</figcaption>
-            </figure>
-            <figure class="shot-card">
-              <img src="./assets/images/app-festivals.avif" alt="DayTicker 倒数日页面截图" data-i18n-alt="preview.countdownAlt">
-              <figcaption class="shot-caption" data-i18n="preview.countdownCaption">倒数日</figcaption>
-            </figure>
+        <aside class="hero-visual" aria-label="应用界面预览" data-i18n-aria="preview.aria">
+          <div class="float-card">
+            <strong data-i18n="preview.floatTitle">2 屏即可开始</strong>
+            <span data-i18n="preview.floatDesc">欢迎 → 取名 → 全屏陪伴</span>
           </div>
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <img class="hero-pet" src="assets/images/pet-hero.png" alt="灵宠小狗主页预览" data-i18n-alt="preview.petAlt">
+              <div class="phone-overlay">
+                <div class="pet-name" data-i18n="preview.petName">糯米</div>
+                <div class="companion" data-i18n="preview.companion">陪伴天数：12 天</div>
+              </div>
+            </div>
+          </div>
+          <img class="paw-badge" src="assets/images/paw-full.png" alt="" aria-hidden="true">
         </aside>
       </div>
     </section>
 
     <section id="features">
       <div class="container">
-        <h2 class="section-head" data-i18n="features.title">为什么选择 DayTicker？</h2>
+        <h2 class="section-head" data-i18n="features.title">为陪伴而设计</h2>
         <p class="section-sub" data-i18n="features.sub">
-          不只是记录日期，更是帮你建立“时间节奏感”。从个人纪念日到世界节日，一站式管理、清晰展示、轻松添加。
+          没有复杂养成，没有账号打扰。灵宠把「宠物在场」放在第一位——打开 App，就是和它相处。
         </p>
-
         <div class="feature-grid">
           <article class="card">
-            <div class="icon">⚡</div>
-            <h3 data-i18n="features.f1t">快速添加</h3>
-            <p data-i18n="features.f1d">一键创建生日、纪念日、节日或任意重要日期，操作简单直观。</p>
+            <div class="icon">🚪</div>
+            <h3 data-i18n="features.f1t">零门槛开始</h3>
+            <p data-i18n="features.f1d">无需注册或登录，安装后打开即用，30 秒内进入主页。</p>
           </article>
           <article class="card">
-            <div class="icon">🗓️</div>
-            <h3 data-i18n="features.f2t">双历法支持</h3>
-            <p data-i18n="features.f2d">同时支持公历与农历，满足不同文化场景和个人习惯。</p>
+            <div class="icon">✏️</div>
+            <h3 data-i18n="features.f2t">专属取名</h3>
+            <p data-i18n="features.f2d">给它取个名字，建立归属感。支持中英文与随机名建议。</p>
           </article>
           <article class="card">
-            <div class="icon">🎨</div>
-            <h3 data-i18n="features.f3t">个性化展示</h3>
-            <p data-i18n="features.f3d">自定义事件颜色与图标，让倒计时列表更清晰、更有活力。</p>
+            <div class="icon">🎬</div>
+            <h3 data-i18n="features.f3t">全屏沉浸动画</h3>
+            <p data-i18n="features.f3d">本地 MP4 循环播放，宠物占满屏幕，弱化传统 App 信息架构。</p>
+          </article>
+          <article class="card">
+            <div class="icon">🐾</div>
+            <h3 data-i18n="features.f4t">爪垫轻触互动</h3>
+            <p data-i18n="features.f4d">打招呼、睡觉、伸懒腰、跑步——四种动作，一键切换。</p>
+          </article>
+          <article class="card">
+            <div class="icon">📅</div>
+            <h3 data-i18n="features.f5t">陪伴天数记录</h3>
+            <p data-i18n="features.f5d">默默记录你们相处的每一天，让陪伴有迹可循。</p>
           </article>
           <article class="card">
             <div class="icon">🌐</div>
-            <h3 data-i18n="features.f4t">全球节日合集</h3>
-            <p data-i18n="features.f4d">内置海量节日库，覆盖中国、美国、英国、日本、韩国等国家和地区。</p>
-          </article>
-          <article class="card">
-            <div class="icon">📚</div>
-            <h3 data-i18n="features.f5t">节日文化解读</h3>
-            <p data-i18n="features.f5d">每个节日附带背景与习俗介绍，等待的同时也在认识世界文化。</p>
-          </article>
-          <article class="card">
-            <div class="icon">🎯</div>
-            <h3 data-i18n="features.f6t">精准倒计时</h3>
-            <p data-i18n="features.f6d">清晰展示剩余天数，帮助你提前规划，不再错过关键时刻。</p>
+            <h3 data-i18n="features.f6t">中英双语</h3>
+            <p data-i18n="features.f6d">跟随系统语言，也可在应用内手动切换中文与 English。</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="festivals">
+    <section id="how">
       <div class="container">
-        <h2 class="section-head" data-i18n="festivals.title">全球节日，不止于“知道日期”</h2>
-        <p class="section-sub" data-i18n="festivals.sub">
-          通过节日列表与介绍功能，你可以快速筛选想关注的节日，并将其一键加入个人倒计时，形成专属节奏表。
-        </p>
-        <div class="list-wrap">
-          <article class="list-panel">
-            <h3 data-i18n="festivals.examplesTitle">内置热门节日示例</h3>
+        <h2 class="section-head" data-i18n="how.title">三步，和它见面</h2>
+        <p class="section-sub" data-i18n="how.sub">极简引导流程，没有多余步骤，专注第一次见面的惊喜。</p>
+        <div class="steps">
+          <article class="step">
+            <div class="step-num">1</div>
+            <h3 data-i18n="how.s1t">打开欢迎页</h3>
+            <p data-i18n="how.s1d">一只小狗正在等你。点击「开始」，进入取名环节。</p>
+          </article>
+          <article class="step">
+            <div class="step-num">2</div>
+            <h3 data-i18n="how.s2t">给它取个名字</h3>
+            <p data-i18n="how.s2d">输入 1–20 个字符，或点「换一个」试试随机昵称。</p>
+          </article>
+          <article class="step">
+            <div class="step-num">3</div>
+            <h3 data-i18n="how.s3t">全屏相处</h3>
+            <p data-i18n="how.s3d">进入主页，动画自动循环。展开爪垫，和它互动玩耍。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="why">
+      <div class="container">
+        <h2 class="section-head" data-i18n="why.title">和其它宠物 App 不一样</h2>
+        <p class="section-sub" data-i18n="why.sub">灵宠不做功能堆叠，只做一件事——让你随时感受到「它在这里」。</p>
+        <div class="compare-grid">
+          <article class="compare-panel us">
+            <h3 data-i18n="why.usTitle">灵宠 PocketPet</h3>
             <ul>
-              <li data-i18n="festivals.example1">元旦、春节、端午节、中秋节</li>
-              <li data-i18n="festivals.example2">情人节、国际妇女节、地球日</li>
-              <li data-i18n="festivals.example3">感恩节、万圣节、圣诞节</li>
-              <li data-i18n="festivals.example4">母亲节、父亲节、劳动节</li>
+              <li data-i18n="why.us1">无账号、无商城、无任务系统</li>
+              <li data-i18n="why.us2">全屏宠物动画，视觉沉浸</li>
+              <li data-i18n="why.us3">动画本地播放，离线也能陪伴</li>
+              <li data-i18n="why.us4">昵称仅本地存储，隐私友好</li>
             </ul>
           </article>
-          <article class="list-panel" id="users">
-            <h3 data-i18n="users.title">适合哪些人？</h3>
+          <article class="compare-panel them">
+            <h3 data-i18n="why.themTitle">常见宠物 App</h3>
             <ul>
-              <li data-i18n="users.u1">重视生活仪式感，想记录每个重要日子的你</li>
-              <li data-i18n="users.u2">容易忘记生日和纪念日，需要提醒与规划的你</li>
-              <li data-i18n="users.u3">管理项目与截止日期，希望清晰掌握时间的专业人士</li>
-              <li data-i18n="users.u4">热爱世界文化，想了解节日起源与习俗的学习者</li>
+              <li data-i18n="why.them1">注册登录、社交与内购</li>
+              <li data-i18n="why.them2">卡片式 UI，信息密度高</li>
+              <li data-i18n="why.them3">依赖网络与复杂养成循环</li>
+              <li data-i18n="why.them4">收集大量用户与行为数据</li>
             </ul>
           </article>
         </div>
@@ -716,53 +743,14 @@
       <div class="container">
         <div class="cta-box">
           <div>
-            <h2 class="cta-title" data-i18n="cta.title">告别遗忘，迎接期待</h2>
+            <h2 class="cta-title" data-i18n="cta.title">口袋里的温柔陪伴</h2>
             <p class="cta-text" data-i18n="cta.text">
-              从现在开始，用 DayTicker 明智地规划时间，让每个重要日期都有被认真对待的意义。
+              灵宠正在准备上架 App Store 与 Google Play。想第一时间体验，欢迎通过邮箱联系我们。
             </p>
           </div>
-          <div class="cta-buttons">
-            <a
-              class="btn btn-primary"
-              href="https://play.google.com/store/apps/details?id=com.deqiutseng.luckyday"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="前往 Google Play 下载 DayTicker"
-              data-i18n-aria="cta.downloadAria">
-              <img class="store-icon" src="./assets/images/GooglePlay.png" alt="" aria-hidden="true">
-              <span data-i18n="cta.downloadBtn">前往 Google Play</span>
-            </a>
-            <a
-              class="btn btn-appstore"
-              href="https://apps.apple.com/us/app/dayticker-countdown-days/id6761118370"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="前往 App Store 下载 DayTicker"
-              data-i18n-aria="cta.appstoreAria">
-              <img class="store-icon" src="./assets/images/AppStore.png" alt="" aria-hidden="true">
-              <span data-i18n="cta.appstoreBtn">前往 App Store</span>
-            </a>
-            <!-- 本地 APK：暂时隐藏，需要时取消下方注释
-            <a
-              class="btn btn-apk"
-              href="./assets/apk/dayticker.apk"
-              download="dayticker.apk"
-              aria-label="下载 DayTicker APK 安装包"
-              data-i18n-aria="cta.apkAria">
-              <img class="store-icon" src="./assets/images/apk.png" alt="" aria-hidden="true">
-              <span data-i18n="cta.apkBtn">安卓下载</span>
-            </a>
-            -->
-            <a
-              class="btn btn-apk"
-              href="http://dayticker.net/assets/apk/dayticker.apk"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="下载 DayTicker APK 安装包"
-              data-i18n-aria="cta.apkAria">
-              <img class="store-icon" src="./assets/images/apk.png" alt="" aria-hidden="true">
-              <span data-i18n="cta.apkBtn">安卓下载</span>
-            </a>
+          <div class="cta-actions">
+            <span class="btn btn-soon" data-i18n="cta.comingSoon">下载即将开放</span>
+            <a class="btn btn-primary" href="mailto:deqiutseng@gmail.com" data-i18n="cta.contact">联系开发者</a>
           </div>
         </div>
       </div>
@@ -770,17 +758,15 @@
 
     <section id="support">
       <div class="container">
-        <h2 class="section-head" data-i18n="support.title">隐私政策 / 联系方式 / 常见问题</h2>
-        <p class="section-sub" data-i18n="support.sub">
-          正式发布信息：我们重视用户数据安全与沟通反馈，欢迎通过邮箱联系建议、合作或问题反馈。
-        </p>
+        <h2 class="section-head" data-i18n="support.title">隐私 / 联系方式 / 常见问题</h2>
+        <p class="section-sub" data-i18n="support.sub">我们重视数据安全与用户反馈，欢迎通过邮箱提出建议或合作意向。</p>
         <div class="policy-grid">
           <article class="card">
             <div class="icon">🔒</div>
             <h3 data-i18n="privacy.title">隐私政策</h3>
             <p>
-              <span data-i18n="privacy.prefix">DayTicker 仅在功能必要范围内使用数据，并持续优化隐私与安全措施。</span>
-              <a href="https://deqiutseng.github.io/privacy.html" target="_blank" rel="noopener noreferrer" data-i18n="privacy.link">查看隐私政策全文</a><span data-i18n="privacy.suffix">。</span>
+              <span data-i18n="privacy.prefix">灵宠仅在功能必要范围内使用数据，昵称等信息保存在本地设备。</span>
+              <a href="privacy.html" data-i18n="privacy.link">查看隐私政策全文</a><span data-i18n="privacy.suffix">。</span>
             </p>
           </article>
           <article class="card">
@@ -793,24 +779,24 @@
           </article>
         </div>
 
-        <div class="list-panel" style="margin-top:16px;">
+        <div class="card" style="margin-top:14px;">
           <h3 data-i18n="faq.title">常见问题 FAQ</h3>
-          <ul class="faq-list">
+          <ul class="faq-list" style="margin-top:12px;">
             <li class="faq-item">
-              <h4 data-i18n="faq.q1">1. 可以添加哪些倒计时类型？</h4>
-              <p data-i18n="faq.a1">可添加生日、结婚纪念日、节日、项目截止日，以及任意自定义重要日期。</p>
+              <h4 data-i18n="faq.q1">1. 需要注册账号吗？</h4>
+              <p data-i18n="faq.a1">不需要。灵宠无需登录，打开 App 即可使用全部功能。</p>
             </li>
             <li class="faq-item">
-              <h4 data-i18n="faq.q2">2. 是否支持农历日期？</h4>
-              <p data-i18n="faq.a2">支持。你可以根据习惯在公历与农历场景中进行记录与管理。</p>
+              <h4 data-i18n="faq.q2">2. 没有网络能玩吗？</h4>
+              <p data-i18n="faq.a2">可以。宠物动画为本地资源，初始化与主页互动不依赖网络。</p>
             </li>
             <li class="faq-item">
-              <h4 data-i18n="faq.q3">3. 节日库覆盖哪些地区？</h4>
-              <p data-i18n="faq.a3">内置覆盖中国、美国、英国、日本、韩国等国家和地区的传统与现代节日。</p>
+              <h4 data-i18n="faq.q3">3. 可以和宠物做哪些互动？</h4>
+              <p data-i18n="faq.a3">通过底部爪垫可触发打招呼、睡觉、伸懒腰、跑步四种动作；空闲时宠物也会自己伸懒腰或睡觉。</p>
             </li>
             <li class="faq-item">
-              <h4 data-i18n="faq.q4">4. 如何下载安装 DayTicker？</h4>
-              <p data-i18n="faq.a4">点击页面中的 Google Play 或 App Store 按钮，即可跳转对应应用商店下载安装。</p>
+              <h4 data-i18n="faq.q4">4. 什么时候可以下载？</h4>
+              <p data-i18n="faq.a4">应用正在上架筹备中。请关注本页面更新，或通过邮箱联系我们获取内测信息。</p>
             </li>
           </ul>
         </div>
@@ -820,221 +806,197 @@
 
   <footer>
     <div class="container">
-      <strong>DayTicker</strong> · <span data-i18n="footer.tagline">让每个日子都值得期待</span> · <span data-i18n="footer.contact">联系方式：</span>
+      <strong data-i18n="brand.name">灵宠</strong> PocketPet · <span data-i18n="footer.tagline">口袋里的虚拟宠物陪伴</span> ·
+      <span data-i18n="footer.contact">联系方式：</span>
       <a href="mailto:deqiutseng@gmail.com">deqiutseng@gmail.com</a> ·
-      <a href="https://deqiutseng.github.io/privacy.html" target="_blank" rel="noopener noreferrer" data-i18n="footer.privacy">用户隐私</a> ·
-      <a href="https://deqiutseng.github.io/sdklist.html" target="_blank" rel="noopener noreferrer" data-i18n="footer.sdk">第三方SDK列表</a>
-      <div class="beian-links">
-        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">粤ICP备2026035331号-2A</a>
-        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">粤ICP备2026035331号-1</a>
-      </div>
+      <a href="privacy.html" data-i18n="footer.privacy">用户隐私</a> ·
+      <a href="sdklist.html" data-i18n="footer.sdk">第三方 SDK 列表</a>
     </div>
   </footer>
+
   <script>
     (function () {
       var i18n = {
         zh: {
-          "site.title": "DayTicker 倒数日 App - 生日纪念日倒计时与全球节日助手",
-          "site.description": "DayTicker 倒数日 App：记录生日、纪念日、节日与重要日程，支持公历/农历、全球节日库与文化介绍，帮你不错过每个重要日子。",
-          "brand.aria": "DayTicker 首页",
+          "site.title": "灵宠 PocketPet - 口袋里的虚拟宠物陪伴",
+          "site.description": "灵宠 PocketPet：零门槛虚拟宠物陪伴 App。给它取个名字，全屏互动，本地动画，无需登录。",
+          "brand.name": "灵宠",
+          "brand.aria": "灵宠首页",
           "nav.features": "核心功能",
-          "nav.festivals": "节日亮点",
-          "nav.users": "适用人群",
+          "nav.how": "如何开始",
+          "nav.why": "为什么选择",
           "nav.support": "支持与 FAQ",
-          "nav.download": "立即下载",
-          "hero.eyebrow": "倒数日 × 全球节日文化",
-          "hero.title": "把每个重要日子，<br>都变成值得期待的时刻",
-          "hero.lead": "DayTicker 是一款轻松添加倒计时的应用程序。快速记录生日、结婚纪念日、节日和任意重要日期，支持公历与农历，并提供全球节日库与详细文化介绍，让时间管理更清晰、更有仪式感。",
-          "hero.downloadAria": "在 Google Play 下载 DayTicker",
-          "hero.downloadBtn": "Google Play 下载",
-          "hero.appstoreAria": "在 App Store 下载 DayTicker",
-          "hero.appstoreBtn": "App Store 下载",
-          "hero.apkAria": "下载 DayTicker APK 安装包",
-          "hero.apkBtn": "安卓下载",
-          "hero.featureBtn": "查看功能亮点",
-          "hero.meta": "支持 Android 与 iPhone，网页在桌面浏览器和手机浏览器均可顺畅浏览。",
-          "preview.aria": "应用截图预览",
-          "preview.title": "应用真实界面预览",
-          "preview.festivalAlt": "DayTicker 节日页面截图",
-          "preview.festivalCaption": "节日",
-          "preview.countdownAlt": "DayTicker 倒数日页面截图",
-          "preview.countdownCaption": "倒数日",
-          "features.title": "为什么选择 DayTicker？",
-          "features.sub": "不只是记录日期，更是帮你建立“时间节奏感”。从个人纪念日到世界节日，一站式管理、清晰展示、轻松添加。",
-          "features.f1t": "快速添加",
-          "features.f1d": "一键创建生日、纪念日、节日或任意重要日期，操作简单直观。",
-          "features.f2t": "双历法支持",
-          "features.f2d": "同时支持公历与农历，满足不同文化场景和个人习惯。",
-          "features.f3t": "个性化展示",
-          "features.f3d": "自定义事件颜色与图标，让倒计时列表更清晰、更有活力。",
-          "features.f4t": "全球节日合集",
-          "features.f4d": "内置海量节日库，覆盖中国、美国、英国、日本、韩国等国家和地区。",
-          "features.f5t": "节日文化解读",
-          "features.f5d": "每个节日附带背景与习俗介绍，等待的同时也在认识世界文化。",
-          "features.f6t": "精准倒计时",
-          "features.f6d": "清晰展示剩余天数，帮助你提前规划，不再错过关键时刻。",
-          "festivals.title": "全球节日，不止于“知道日期”",
-          "festivals.sub": "通过节日列表与介绍功能，你可以快速筛选想关注的节日，并将其一键加入个人倒计时，形成专属节奏表。",
-          "festivals.examplesTitle": "内置热门节日示例",
-          "festivals.example1": "元旦、春节、端午节、中秋节",
-          "festivals.example2": "情人节、国际妇女节、地球日",
-          "festivals.example3": "感恩节、万圣节、圣诞节",
-          "festivals.example4": "母亲节、父亲节、劳动节",
-          "users.title": "适合哪些人？",
-          "users.u1": "重视生活仪式感，想记录每个重要日子的你",
-          "users.u2": "容易忘记生日和纪念日，需要提醒与规划的你",
-          "users.u3": "管理项目与截止日期，希望清晰掌握时间的专业人士",
-          "users.u4": "热爱世界文化，想了解节日起源与习俗的学习者",
-          "cta.title": "告别遗忘，迎接期待",
-          "cta.text": "从现在开始，用 DayTicker 明智地规划时间，让每个重要日期都有被认真对待的意义。",
-          "cta.downloadAria": "前往 Google Play 下载 DayTicker",
-          "cta.downloadBtn": "前往 Google Play",
-          "cta.appstoreAria": "前往 App Store 下载 DayTicker",
-          "cta.appstoreBtn": "前往 App Store",
-          "cta.apkAria": "下载 DayTicker APK 安装包",
-          "cta.apkBtn": "安卓下载",
-          "support.title": "隐私政策 / 联系方式 / 常见问题",
-          "support.sub": "正式发布信息：我们重视用户数据安全与沟通反馈，欢迎通过邮箱联系建议、合作或问题反馈。",
+          "hero.eyebrow": "零门槛 · 虚拟宠物陪伴",
+          "hero.title": "给它一个名字，<br>开始你的口袋陪伴",
+          "hero.lead": "灵宠 PocketPet 是一款以陪伴感为核心的虚拟宠物 App。无需注册登录，两步完成初始化，全屏本地动画让小狗始终在场，轻触爪垫即可互动。",
+          "hero.comingSoon": "iOS / Android 即将上线",
+          "hero.featureBtn": "了解功能",
+          "hero.meta": "支持 iOS 与 Android · 动画本地播放，不依赖网络 · 中英文双语",
+          "preview.aria": "应用界面预览",
+          "preview.floatTitle": "2 屏即可开始",
+          "preview.floatDesc": "欢迎 → 取名 → 全屏陪伴",
+          "preview.petAlt": "灵宠小狗主页预览",
+          "preview.petName": "糯米",
+          "preview.companion": "陪伴天数：12 天",
+          "features.title": "为陪伴而设计",
+          "features.sub": "没有复杂养成，没有账号打扰。灵宠把「宠物在场」放在第一位——打开 App，就是和它相处。",
+          "features.f1t": "零门槛开始",
+          "features.f1d": "无需注册或登录，安装后打开即用，30 秒内进入主页。",
+          "features.f2t": "专属取名",
+          "features.f2d": "给它取个名字，建立归属感。支持中英文与随机名建议。",
+          "features.f3t": "全屏沉浸动画",
+          "features.f3d": "本地 MP4 循环播放，宠物占满屏幕，弱化传统 App 信息架构。",
+          "features.f4t": "爪垫轻触互动",
+          "features.f4d": "打招呼、睡觉、伸懒腰、跑步——四种动作，一键切换。",
+          "features.f5t": "陪伴天数记录",
+          "features.f5d": "默默记录你们相处的每一天，让陪伴有迹可循。",
+          "features.f6t": "中英双语",
+          "features.f6d": "跟随系统语言，也可在应用内手动切换中文与 English。",
+          "how.title": "三步，和它见面",
+          "how.sub": "极简引导流程，没有多余步骤，专注第一次见面的惊喜。",
+          "how.s1t": "打开欢迎页",
+          "how.s1d": "一只小狗正在等你。点击「开始」，进入取名环节。",
+          "how.s2t": "给它取个名字",
+          "how.s2d": "输入 1–20 个字符，或点「换一个」试试随机昵称。",
+          "how.s3t": "全屏相处",
+          "how.s3d": "进入主页，动画自动循环。展开爪垫，和它互动玩耍。",
+          "why.title": "和其它宠物 App 不一样",
+          "why.sub": "灵宠不做功能堆叠，只做一件事——让你随时感受到「它在这里」。",
+          "why.usTitle": "灵宠 PocketPet",
+          "why.us1": "无账号、无商城、无任务系统",
+          "why.us2": "全屏宠物动画，视觉沉浸",
+          "why.us3": "动画本地播放，离线也能陪伴",
+          "why.us4": "昵称仅本地存储，隐私友好",
+          "why.themTitle": "常见宠物 App",
+          "why.them1": "注册登录、社交与内购",
+          "why.them2": "卡片式 UI，信息密度高",
+          "why.them3": "依赖网络与复杂养成循环",
+          "why.them4": "收集大量用户与行为数据",
+          "cta.title": "口袋里的温柔陪伴",
+          "cta.text": "灵宠正在准备上架 App Store 与 Google Play。想第一时间体验，欢迎通过邮箱联系我们。",
+          "cta.comingSoon": "下载即将开放",
+          "cta.contact": "联系开发者",
+          "support.title": "隐私 / 联系方式 / 常见问题",
+          "support.sub": "我们重视数据安全与用户反馈，欢迎通过邮箱提出建议或合作意向。",
           "privacy.title": "隐私政策",
-          "privacy.prefix": "DayTicker 仅在功能必要范围内使用数据，并持续优化隐私与安全措施。",
+          "privacy.prefix": "灵宠仅在功能必要范围内使用数据，昵称等信息保存在本地设备。",
           "privacy.link": "查看隐私政策全文",
           "privacy.suffix": "。",
           "contact.title": "联系邮箱",
           "contact.prefix": "反馈与合作请联系：",
           "faq.title": "常见问题 FAQ",
-          "faq.q1": "1. 可以添加哪些倒计时类型？",
-          "faq.a1": "可添加生日、结婚纪念日、节日、项目截止日，以及任意自定义重要日期。",
-          "faq.q2": "2. 是否支持农历日期？",
-          "faq.a2": "支持。你可以根据习惯在公历与农历场景中进行记录与管理。",
-          "faq.q3": "3. 节日库覆盖哪些地区？",
-          "faq.a3": "内置覆盖中国、美国、英国、日本、韩国等国家和地区的传统与现代节日。",
-          "faq.q4": "4. 如何下载安装 DayTicker？",
-          "faq.a4": "点击页面中的 Google Play 或 App Store 按钮，即可跳转对应应用商店下载安装。",
-          "footer.tagline": "让每个日子都值得期待",
+          "faq.q1": "1. 需要注册账号吗？",
+          "faq.a1": "不需要。灵宠无需登录，打开 App 即可使用全部功能。",
+          "faq.q2": "2. 没有网络能玩吗？",
+          "faq.a2": "可以。宠物动画为本地资源，初始化与主页互动不依赖网络。",
+          "faq.q3": "3. 可以和宠物做哪些互动？",
+          "faq.a3": "通过底部爪垫可触发打招呼、睡觉、伸懒腰、跑步四种动作；空闲时宠物也会自己伸懒腰或睡觉。",
+          "faq.q4": "4. 什么时候可以下载？",
+          "faq.a4": "应用正在上架筹备中。请关注本页面更新，或通过邮箱联系我们获取内测信息。",
+          "footer.tagline": "口袋里的虚拟宠物陪伴",
           "footer.contact": "联系方式：",
           "footer.privacy": "用户隐私",
-          "footer.sdk": "第三方SDK列表"
+          "footer.sdk": "第三方 SDK 列表"
         },
         en: {
-          "site.title": "DayTicker Countdown App - Birthdays, Anniversaries & Global Festivals",
-          "site.description": "Track birthdays, anniversaries, festivals, and important dates with DayTicker. Supports Gregorian and Lunar calendars with global holiday lists and cultural insights.",
-          "brand.aria": "DayTicker Home",
+          "site.title": "PocketPet - Your Pocket Virtual Companion",
+          "site.description": "PocketPet: a zero-friction virtual pet companion. Name your pet, enjoy full-screen local animations, and interact without signing in.",
+          "brand.name": "PocketPet",
+          "brand.aria": "PocketPet Home",
           "nav.features": "Features",
-          "nav.festivals": "Festivals",
-          "nav.users": "Who It's For",
+          "nav.how": "How It Works",
+          "nav.why": "Why PocketPet",
           "nav.support": "Support & FAQ",
-          "nav.download": "Download",
-          "hero.eyebrow": "Countdowns × Global Festival Culture",
-          "hero.title": "Turn every important date<br>into something to look forward to",
-          "hero.lead": "DayTicker helps you add countdowns effortlessly. Track birthdays, anniversaries, holidays, or any important date, with both Gregorian and Lunar calendars plus global festival libraries and cultural introductions.",
-          "hero.downloadAria": "Download DayTicker on Google Play",
-          "hero.downloadBtn": "Download on Google Play",
-          "hero.appstoreAria": "Download DayTicker on the App Store",
-          "hero.appstoreBtn": "Download on the App Store",
-          "hero.apkAria": "Download DayTicker APK package",
-          "hero.apkBtn": "Android Download",
-          "hero.featureBtn": "Explore Features",
-          "hero.meta": "Available on Android and iPhone. This website is optimized for both desktop and mobile browsers.",
-          "preview.aria": "App screenshot preview",
-          "preview.title": "Real App Screenshots",
-          "preview.festivalAlt": "DayTicker festivals screen screenshot",
-          "preview.festivalCaption": "Festivals",
-          "preview.countdownAlt": "DayTicker countdown days screen screenshot",
-          "preview.countdownCaption": "Countdown Days",
-          "features.title": "Why DayTicker?",
-          "features.sub": "More than date tracking: build your own rhythm of time with personal events and global festivals in one clean, visual app.",
-          "features.f1t": "Quick Add",
-          "features.f1d": "Create birthdays, anniversaries, holidays, or custom dates in just one tap.",
-          "features.f2t": "Dual Calendar Support",
-          "features.f2d": "Supports both Gregorian and Lunar calendars for different cultures and habits.",
-          "features.f3t": "Personalized Display",
-          "features.f3d": "Customize event colors and icons to keep your list vivid and organized.",
-          "features.f4t": "Global Festival Library",
-          "features.f4d": "Built-in festivals across China, the US, the UK, Japan, South Korea, and more.",
-          "features.f5t": "Cultural Insights",
-          "features.f5d": "Each festival includes background stories and customs to help you learn while you wait.",
-          "features.f6t": "Accurate Countdown",
-          "features.f6d": "Clear remaining-day display helps you plan ahead and never miss key dates.",
-          "festivals.title": "Global festivals, not just dates",
-          "festivals.sub": "Browse and discover festivals, then add them to your personal countdown list with one tap.",
-          "festivals.examplesTitle": "Popular Festivals Included",
-          "festivals.example1": "New Year's Day, Spring Festival, Dragon Boat Festival, Mid-Autumn Festival",
-          "festivals.example2": "Valentine's Day, International Women's Day, Earth Day",
-          "festivals.example3": "Thanksgiving, Halloween, Christmas",
-          "festivals.example4": "Mother's Day, Father's Day, Labor Day",
-          "users.title": "Who is it for?",
-          "users.u1": "People who value life rituals and important moments",
-          "users.u2": "People who often forget birthdays and anniversaries",
-          "users.u3": "Professionals managing projects and deadlines",
-          "users.u4": "Curious learners exploring cultures around the world",
-          "cta.title": "Stop forgetting, start anticipating",
-          "cta.text": "Start planning your time wisely with DayTicker, and give every important day the meaning it deserves.",
-          "cta.downloadAria": "Go to Google Play to download DayTicker",
-          "cta.downloadBtn": "Get it on Google Play",
-          "cta.appstoreAria": "Go to the App Store to download DayTicker",
-          "cta.appstoreBtn": "Get it on the App Store",
-          "cta.apkAria": "Download DayTicker APK package",
-          "cta.apkBtn": "Android Download",
+          "hero.eyebrow": "Zero friction · Virtual companionship",
+          "hero.title": "Give it a name,<br>start your pocket companion",
+          "hero.lead": "PocketPet is built around one feeling: your pet is always there. No sign-up, a two-step setup, full-screen local animations, and paw-pad interactions—just open the app and spend time together.",
+          "hero.comingSoon": "iOS / Android coming soon",
+          "hero.featureBtn": "Explore features",
+          "hero.meta": "iOS & Android · Local animations, no network required · Chinese & English",
+          "preview.aria": "App preview",
+          "preview.floatTitle": "Ready in 2 screens",
+          "preview.floatDesc": "Welcome → Name → Full-screen companion",
+          "preview.petAlt": "PocketPet puppy home screen preview",
+          "preview.petName": "Mochi",
+          "preview.companion": "Together for 12 days",
+          "features.title": "Designed for companionship",
+          "features.sub": "No complex progression, no account friction. PocketPet puts your pet front and center—the moment you open the app, you're together.",
+          "features.f1t": "Zero setup",
+          "features.f1d": "No registration or login. Install, open, and reach the home screen in under 30 seconds.",
+          "features.f2t": "Name your pet",
+          "features.f2d": "Choose a name that stays with your pet. Supports Chinese, English, and random suggestions.",
+          "features.f3t": "Full-screen immersion",
+          "features.f3d": "Local MP4 loops fill the screen so your pet feels present, not tucked into cards.",
+          "features.f4t": "Paw-pad interactions",
+          "features.f4d": "Greet, sleep, stretch, and run—four playful actions at your fingertips.",
+          "features.f5t": "Companion days",
+          "features.f5d": "Quietly tracks how many days you've been together.",
+          "features.f6t": "Bilingual",
+          "features.f6d": "Follows system language or switch between Chinese and English in-app.",
+          "how.title": "Three steps to meet your pet",
+          "how.sub": "A minimal onboarding flow with no extra steps—just the joy of the first hello.",
+          "how.s1t": "Open the welcome screen",
+          "how.s1d": "A puppy is waiting. Tap Get started to begin naming.",
+          "how.s2t": "Give it a name",
+          "how.s2d": "Enter 1–20 characters, or tap Shuffle for a random suggestion.",
+          "how.s3t": "Spend time together",
+          "how.s3d": "Land on the home screen with looping animation. Expand the paw pad to play.",
+          "why.title": "Not your typical pet app",
+          "why.sub": "PocketPet skips feature bloat and focuses on one thing: making you feel that your pet is here.",
+          "why.usTitle": "PocketPet",
+          "why.us1": "No accounts, shops, or task systems",
+          "why.us2": "Full-screen pet animation for immersion",
+          "why.us3": "Local playback—offline companionship",
+          "why.us4": "Nicknames stored on-device, privacy-friendly",
+          "why.themTitle": "Typical pet apps",
+          "why.them1": "Sign-in, social features, and in-app purchases",
+          "why.them2": "Card-heavy UI with high information density",
+          "why.them3": "Network-dependent progression loops",
+          "why.them4": "Extensive user and behavior data collection",
+          "cta.title": "Gentle company in your pocket",
+          "cta.text": "PocketPet is preparing for App Store and Google Play launch. Want early access? Reach out by email.",
+          "cta.comingSoon": "Download opening soon",
+          "cta.contact": "Contact developer",
           "support.title": "Privacy / Contact / FAQ",
-          "support.sub": "Release-ready information: we value data security and user feedback. Feel free to contact us for suggestions or partnerships.",
+          "support.sub": "We care about data safety and user feedback. Email us with suggestions or partnership ideas.",
           "privacy.title": "Privacy Policy",
-          "privacy.prefix": "DayTicker uses data only when necessary for core functions and keeps improving privacy and security practices.",
+          "privacy.prefix": "PocketPet uses data only when necessary. Nicknames and pet info stay on your device.",
           "privacy.link": "Read the full Privacy Policy",
           "privacy.suffix": ".",
           "contact.title": "Contact Email",
           "contact.prefix": "For feedback or collaboration:",
           "faq.title": "FAQ",
-          "faq.q1": "1. What countdown types can I add?",
-          "faq.a1": "Birthdays, anniversaries, holidays, project deadlines, and any custom important date.",
-          "faq.q2": "2. Does it support Lunar calendar dates?",
-          "faq.a2": "Yes. You can manage dates in both Gregorian and Lunar calendar scenarios.",
-          "faq.q3": "3. Which regions are covered by the festival library?",
-          "faq.a3": "It includes traditional and modern festivals from China, the US, the UK, Japan, South Korea, and more.",
-          "faq.q4": "4. How do I install DayTicker?",
-          "faq.a4": "Use the Google Play or App Store buttons on this page to open the store and install the app.",
-          "footer.tagline": "Make every day worth anticipating",
+          "faq.q1": "1. Do I need an account?",
+          "faq.a1": "No. PocketPet requires no login—open the app and you're ready.",
+          "faq.q2": "2. Does it work offline?",
+          "faq.a2": "Yes. Pet animations are bundled locally; onboarding and home interactions don't need the network.",
+          "faq.q3": "3. What interactions are available?",
+          "faq.a3": "Use the paw pad for greet, sleep, stretch, and run. When idle, your pet may stretch or nap on its own.",
+          "faq.q4": "4. When can I download it?",
+          "faq.a4": "We're preparing store listings. Watch this page for updates, or email us for beta info.",
+          "footer.tagline": "Your pocket virtual companion",
           "footer.contact": "Contact:",
           "footer.privacy": "Privacy Policy",
           "footer.sdk": "Third-Party SDK List"
         }
       };
 
-      var langKey = "dayticker_lang";
-
-      function getRegionFromLocale(localeString) {
-        if (!localeString || typeof Intl === "undefined" || !Intl.Locale) {
-          return "";
-        }
-        try {
-          return new Intl.Locale(localeString).region || "";
-        } catch (error) {
-          return "";
-        }
-      }
+      var langKey = "pocketpet_lang";
 
       function detectChinaRegion() {
         var locales = Array.isArray(navigator.languages) && navigator.languages.length
           ? navigator.languages
           : [navigator.language || ""];
-        var hasCNRegion = locales.some(function (loc) {
-          return getRegionFromLocale(loc).toUpperCase() === "CN";
+        var hasCN = locales.some(function (loc) {
+          return /-CN$/i.test(loc) || loc === "zh-CN" || loc === "zh";
         });
-        if (hasCNRegion) {
-          return true;
-        }
-        var tz = "";
+        if (hasCN) return true;
         try {
-          tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
-        } catch (error) {
-          tz = "";
+          var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+          return ["Asia/Shanghai", "Asia/Chongqing", "Asia/Harbin", "Asia/Urumqi"].indexOf(tz) >= 0;
+        } catch (e) {
+          return false;
         }
-        var chinaTimezones = [
-          "Asia/Shanghai",
-          "Asia/Chongqing",
-          "Asia/Harbin",
-          "Asia/Urumqi"
-        ];
-        return chinaTimezones.indexOf(tz) >= 0;
       }
 
       function applyLang(lang) {
@@ -1042,49 +1004,31 @@
         document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
         document.title = dict["site.title"];
         var desc = document.querySelector('meta[name="description"]');
-        if (desc) {
-          desc.setAttribute("content", dict["site.description"]);
-        }
-        var ogTitle = document.querySelector('meta[property="og:title"]');
-        if (ogTitle) {
-          ogTitle.setAttribute("content", dict["site.title"]);
-        }
-        var ogDesc = document.querySelector('meta[property="og:description"]');
-        if (ogDesc) {
-          ogDesc.setAttribute("content", dict["site.description"]);
-        }
-        var twitterTitle = document.querySelector('meta[name="twitter:title"]');
-        if (twitterTitle) {
-          twitterTitle.setAttribute("content", dict["site.title"]);
-        }
-        var twitterDesc = document.querySelector('meta[name="twitter:description"]');
-        if (twitterDesc) {
-          twitterDesc.setAttribute("content", dict["site.description"]);
-        }
+        if (desc) desc.setAttribute("content", dict["site.description"]);
+        ["og:title", "og:description"].forEach(function (prop) {
+          var el = document.querySelector('meta[property="' + prop + '"]');
+          if (el) el.setAttribute("content", dict[prop === "og:title" ? "site.title" : "site.description"]);
+        });
+        ["twitter:title", "twitter:description"].forEach(function (name) {
+          var el = document.querySelector('meta[name="' + name + '"]');
+          if (el) el.setAttribute("content", dict[name === "twitter:title" ? "site.title" : "site.description"]);
+        });
 
         document.querySelectorAll("[data-i18n]").forEach(function (el) {
           var key = el.getAttribute("data-i18n");
-          if (dict[key]) {
-            el.textContent = dict[key];
-          }
+          if (dict[key]) el.textContent = dict[key];
         });
         document.querySelectorAll("[data-i18n-html]").forEach(function (el) {
           var key = el.getAttribute("data-i18n-html");
-          if (dict[key]) {
-            el.innerHTML = dict[key];
-          }
+          if (dict[key]) el.innerHTML = dict[key];
         });
         document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
           var key = el.getAttribute("data-i18n-aria");
-          if (dict[key]) {
-            el.setAttribute("aria-label", dict[key]);
-          }
+          if (dict[key]) el.setAttribute("aria-label", dict[key]);
         });
         document.querySelectorAll("[data-i18n-alt]").forEach(function (el) {
           var key = el.getAttribute("data-i18n-alt");
-          if (dict[key]) {
-            el.setAttribute("alt", dict[key]);
-          }
+          if (dict[key]) el.setAttribute("alt", dict[key]);
         });
 
         var zhBtn = document.getElementById("lang-zh");
@@ -1097,9 +1041,7 @@
 
       function initLang() {
         var saved = localStorage.getItem(langKey);
-        var initial = saved === "zh" || saved === "en"
-          ? saved
-          : (detectChinaRegion() ? "zh" : "en");
+        var initial = saved === "zh" || saved === "en" ? saved : (detectChinaRegion() ? "zh" : "en");
         applyLang(initial);
       }
 
