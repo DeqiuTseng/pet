@@ -3,37 +3,35 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="灵宠 PocketPet：零门槛虚拟宠物陪伴 App。给它取个名字，全屏互动，本地动画，无需登录。">
+  <meta name="description" content="灵宠 PocketPet：零门槛虚拟宠物陪伴 App，即将上线。给它取个名字，全屏互动，本地动画，无需登录。">
   <meta name="robots" content="index,follow">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PocketPet">
-  <meta property="og:title" content="灵宠 PocketPet - 口袋里的虚拟宠物陪伴">
-  <meta property="og:description" content="一只小狗正在等你。无需注册，取名即陪伴，全屏动画与轻触互动，让宠物始终在场。">
+  <meta property="og:title" content="灵宠 PocketPet - 即将上线">
+  <meta property="og:description" content="一只小狗正在等你。口袋里的虚拟宠物陪伴，即将登陆 iOS 与 Android。">
   <meta property="og:url" content="https://deqiutseng.github.io/pet/">
   <meta property="og:image" content="https://deqiutseng.github.io/pet/assets/images/logo.png">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="灵宠 PocketPet - 口袋里的虚拟宠物陪伴">
-  <meta name="twitter:description" content="一只小狗正在等你。无需注册，取名即陪伴，全屏动画与轻触互动。">
+  <meta name="twitter:title" content="灵宠 PocketPet - 即将上线">
+  <meta name="twitter:description" content="一只小狗正在等你。口袋里的虚拟宠物陪伴，即将登陆 iOS 与 Android。">
   <meta name="twitter:image" content="https://deqiutseng.github.io/pet/assets/images/logo.png">
-  <title>灵宠 PocketPet - 口袋里的虚拟宠物陪伴</title>
+  <title>灵宠 PocketPet - 即将上线</title>
   <link rel="icon" href="assets/images/logo.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --canvas: #fff8f2;
-      --surface: #ffffff;
-      --ink: #2b2421;
-      --muted: #8e7c74;
-      --accent: #f07c5a;
-      --accent-dark: #d96544;
-      --accent-soft: #fbe0d5;
-      --line: #eadbd2;
-      --video-bg: #3b2f2b;
-      --shadow: 0 14px 40px rgba(43, 36, 33, 0.08);
+      --bg-deep: #1a1412;
+      --bg-mid: #2a211e;
+      --glow: #f07c5a;
+      --glow-soft: rgba(240, 124, 90, 0.18);
+      --glow-ring: rgba(240, 124, 90, 0.35);
+      --text: #f5ebe4;
+      --text-muted: #a8958c;
+      --surface: rgba(255, 248, 242, 0.06);
+      --line: rgba(255, 248, 242, 0.1);
       --radius: 20px;
-      --max: 1120px;
     }
 
     * {
@@ -44,18 +42,19 @@
     body {
       margin: 0;
       padding: 0;
+      min-height: 100%;
       font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
         "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-      color: var(--ink);
-      background: linear-gradient(180deg, var(--canvas) 0%, #ffffff 520px, #ffffff 100%);
+      color: var(--text);
+      background: var(--bg-deep);
       line-height: 1.65;
+      overflow-x: hidden;
     }
 
     h1,
     h2,
-    h3,
     .brand span,
-    .step-num {
+    .status-badge {
       font-family: "Fraunces", Georgia, "Times New Roman", serif;
     }
 
@@ -64,25 +63,64 @@
       text-decoration: none;
     }
 
-    .container {
-      width: min(var(--max), 92vw);
-      margin: 0 auto;
+    .page {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, var(--glow-soft) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 90% 80%, rgba(240, 124, 90, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 35% at 5% 70%, rgba(240, 124, 90, 0.06) 0%, transparent 50%),
+        linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-mid) 100%);
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(60px);
+      opacity: 0.5;
+    }
+
+    .orb-1 {
+      width: 320px;
+      height: 320px;
+      background: rgba(240, 124, 90, 0.15);
+      top: -80px;
+      right: -60px;
+      animation: drift 12s ease-in-out infinite;
+    }
+
+    .orb-2 {
+      width: 240px;
+      height: 240px;
+      background: rgba(240, 180, 140, 0.1);
+      bottom: 10%;
+      left: -80px;
+      animation: drift 16s ease-in-out infinite reverse;
+    }
+
+    @keyframes drift {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(20px, -16px); }
     }
 
     .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      backdrop-filter: blur(10px);
-      background: rgba(255, 248, 242, 0.88);
-      border-bottom: 1px solid rgba(234, 219, 210, 0.9);
+      position: relative;
+      z-index: 10;
+      padding: 20px 0;
+    }
+
+    .container {
+      width: min(680px, 90vw);
+      margin: 0 auto;
     }
 
     .topbar-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 64px;
       gap: 16px;
     }
 
@@ -91,7 +129,7 @@
       align-items: center;
       gap: 10px;
       font-weight: 700;
-      font-size: 18px;
+      font-size: 17px;
     }
 
     .logo {
@@ -100,19 +138,7 @@
       border-radius: 10px;
       object-fit: cover;
       display: block;
-      box-shadow: 0 4px 12px rgba(240, 124, 90, 0.25);
-    }
-
-    .nav {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .nav a:hover {
-      color: var(--ink);
+      box-shadow: 0 0 0 1px var(--line), 0 8px 24px rgba(0, 0, 0, 0.3);
     }
 
     .lang-switch {
@@ -120,7 +146,8 @@
       border: 1px solid var(--line);
       border-radius: 999px;
       overflow: hidden;
-      background: #fff;
+      background: var(--surface);
+      backdrop-filter: blur(8px);
     }
 
     .lang-btn {
@@ -129,63 +156,172 @@
       padding: 7px 12px;
       font-size: 13px;
       cursor: pointer;
-      color: var(--muted);
+      color: var(--text-muted);
     }
 
     .lang-btn.active {
-      background: var(--accent-soft);
-      color: #9a3f22;
+      background: rgba(240, 124, 90, 0.2);
+      color: #ffc9b5;
       font-weight: 600;
     }
 
-    .hero {
-      padding: 56px 0 36px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 32px;
+    main {
+      flex: 1;
+      display: flex;
       align-items: center;
+      justify-content: center;
+      padding: 24px 0 48px;
+      position: relative;
+      z-index: 5;
     }
 
-    .hero-grid > * {
-      min-width: 0;
+    .hero {
+      text-align: center;
     }
 
-    .eyebrow {
+    .pet-wrap {
+      position: relative;
+      width: min(220px, 52vw);
+      margin: 0 auto 28px;
+    }
+
+    .pet-glow {
+      position: absolute;
+      inset: -20%;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--glow-ring) 0%, transparent 70%);
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+
+    .pet-img {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid var(--line);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .paw-float {
+      position: absolute;
+      width: 44px;
+      opacity: 0.7;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+    }
+
+    .paw-1 {
+      top: 8%;
+      right: -12%;
+      animation: bob 4s ease-in-out infinite;
+    }
+
+    .paw-2 {
+      bottom: 12%;
+      left: -14%;
+      animation: bob 5s ease-in-out infinite 0.5s;
+      transform: rotate(-20deg);
+    }
+
+    @keyframes bob {
+      0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+      50% { transform: translateY(-8px) rotate(var(--rot, 0deg)); }
+    }
+
+    .paw-2 { --rot: -20deg; }
+
+    .status-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      border: 1px solid #f5c4b0;
+      border: 1px solid rgba(240, 124, 90, 0.4);
       border-radius: 999px;
-      padding: 6px 14px;
+      padding: 7px 16px;
       font-size: 13px;
-      color: #b04a28;
-      background: var(--accent-soft);
-      margin-bottom: 18px;
+      color: #ffc9b5;
+      background: rgba(240, 124, 90, 0.12);
+      margin-bottom: 20px;
+      letter-spacing: 0.02em;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--glow);
+      box-shadow: 0 0 8px var(--glow);
+      animation: blink 2s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
     }
 
     h1 {
       margin: 0 0 16px;
-      line-height: 1.18;
-      font-size: clamp(32px, 5vw, 52px);
+      font-size: clamp(30px, 6vw, 44px);
+      line-height: 1.2;
       letter-spacing: -0.02em;
     }
 
     .lead {
-      margin: 0;
-      color: var(--muted);
-      font-size: clamp(16px, 2vw, 18px);
-      max-width: 52ch;
+      margin: 0 auto 32px;
+      color: var(--text-muted);
+      font-size: clamp(15px, 2.5vw, 17px);
+      max-width: 42ch;
+    }
+
+    .teasers {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+
+    .teaser {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      font-size: 13px;
+      color: var(--text-muted);
+      backdrop-filter: blur(6px);
+    }
+
+    .teaser span {
+      font-size: 15px;
+    }
+
+    .cta-block {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      backdrop-filter: blur(12px);
+      margin-bottom: 28px;
+    }
+
+    .cta-label {
+      margin: 0 0 14px;
+      font-size: 14px;
+      color: var(--text-muted);
     }
 
     .cta-row {
-      margin-top: 28px;
       display: flex;
-      align-items: center;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
     .btn {
@@ -197,787 +333,230 @@
       padding: 13px 22px;
       font-weight: 600;
       font-size: 15px;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
       border: 1px solid transparent;
+      cursor: pointer;
     }
 
     .btn:focus-visible {
-      outline: 3px solid #ffc9b5;
+      outline: 3px solid var(--glow-ring);
       outline-offset: 2px;
     }
 
     .btn-primary {
-      background: var(--accent);
+      background: var(--glow);
       color: #fff;
-      box-shadow: 0 12px 28px rgba(240, 124, 90, 0.32);
+      box-shadow: 0 8px 28px rgba(240, 124, 90, 0.35);
     }
 
     .btn-primary:hover {
-      background: var(--accent-dark);
       transform: translateY(-1px);
+      box-shadow: 0 12px 32px rgba(240, 124, 90, 0.45);
     }
 
     .btn-ghost {
-      background: #fff;
+      background: transparent;
       border-color: var(--line);
-      color: var(--ink);
+      color: var(--text);
     }
 
     .btn-ghost:hover {
-      background: var(--canvas);
+      background: rgba(255, 255, 255, 0.05);
     }
 
-    .btn-soon {
-      background: #f3ebe4;
-      color: #9a857c;
-      cursor: default;
-      border-color: var(--line);
-    }
-
-    .meta {
-      margin-top: 14px;
-      color: var(--muted);
+    .platforms {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+      color: var(--text-muted);
       font-size: 13px;
     }
 
-    .hero-visual {
-      position: relative;
-    }
-
-    .phone-frame {
-      background: linear-gradient(165deg, #fff 0%, #fff3ea 100%);
-      border: 1px solid var(--line);
-      border-radius: 32px;
-      box-shadow: var(--shadow);
-      padding: 14px;
-      max-width: 340px;
-      margin: 0 auto;
-    }
-
-    .phone-screen {
-      border-radius: 24px;
-      overflow: hidden;
-      background: var(--video-bg);
-      aspect-ratio: 9 / 19.5;
-      position: relative;
-    }
-
-    .phone-screen img.hero-pet {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-    }
-
-    .phone-overlay {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      padding: 16px;
-      background: linear-gradient(180deg, transparent 0%, rgba(59, 47, 43, 0.72) 100%);
-      color: #fff;
-    }
-
-    .phone-overlay .pet-name {
-      font-weight: 600;
-      font-size: 15px;
-    }
-
-    .phone-overlay .companion {
-      font-size: 12px;
-      opacity: 0.88;
-      margin-top: 2px;
-    }
-
-    .paw-badge {
-      position: absolute;
-      right: -8px;
-      bottom: 48px;
-      width: 72px;
-      filter: drop-shadow(0 8px 16px rgba(43, 36, 33, 0.18));
-    }
-
-    .float-card {
-      position: absolute;
-      left: -18px;
-      top: 24px;
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 12px 14px;
-      box-shadow: 0 10px 24px rgba(43, 36, 33, 0.08);
-      max-width: 180px;
-    }
-
-    .float-card strong {
-      display: block;
-      font-size: 14px;
-      margin-bottom: 4px;
-    }
-
-    .float-card span {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    section {
-      padding: 32px 0;
-    }
-
-    .section-head {
-      margin: 0 0 12px;
-      font-size: clamp(26px, 3.2vw, 38px);
-      line-height: 1.22;
-      letter-spacing: -0.02em;
-    }
-
-    .section-sub {
-      margin: 0 0 28px;
-      color: var(--muted);
-      max-width: 68ch;
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 20px;
-      box-shadow: 0 8px 24px rgba(43, 36, 33, 0.04);
-    }
-
-    .card h3 {
-      margin: 10px 0 8px;
-      font-size: 18px;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .card .icon {
-      font-size: 28px;
-      line-height: 1;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .step {
-      background: linear-gradient(180deg, #fff, #fff9f4);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 22px;
-    }
-
-    .step-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--accent-soft);
-      color: #b04a28;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .step h3 {
-      margin: 0 0 8px;
-      font-size: 18px;
-    }
-
-    .step p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .compare-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .compare-panel {
-      border-radius: var(--radius);
-      padding: 22px;
-      border: 1px solid var(--line);
-    }
-
-    .compare-panel.us {
-      background: linear-gradient(145deg, #fff3ec, #ffe8dc);
-      border-color: #f5c4b0;
-    }
-
-    .compare-panel.them {
-      background: #fff;
-    }
-
-    .compare-panel h3 {
-      margin: 0 0 12px;
-      font-size: 18px;
-    }
-
-    .compare-panel ul {
-      margin: 0;
-      padding-left: 18px;
-      color: var(--muted);
-    }
-
-    .compare-panel li + li {
-      margin-top: 8px;
-    }
-
-    .cta {
-      padding: 28px 0 72px;
-    }
-
-    .cta-box {
-      background: linear-gradient(145deg, #fff0e8, #ffe2d4);
-      border: 1px solid #f5c4b0;
-      border-radius: 26px;
-      padding: clamp(24px, 5vw, 40px);
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, min(100%, 260px));
-      gap: 20px;
-      align-items: center;
-    }
-
-    .cta-box > * {
-      min-width: 0;
-    }
-
-    .cta-title {
-      margin: 0 0 10px;
-      font-size: clamp(26px, 3.4vw, 38px);
-      line-height: 1.18;
-    }
-
-    .cta-text {
-      margin: 0;
-      color: #6f5c54;
-      max-width: 46ch;
-    }
-
-    .cta-actions {
+    .platform {
       display: flex;
-      flex-direction: column;
-      gap: 12px;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.7;
     }
 
-    .cta-actions .btn {
-      width: 100%;
+    .platform svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
     }
 
-    .policy-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .faq-list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: 10px;
-    }
-
-    .faq-item {
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 16px;
-      background: #fff;
-    }
-
-    .faq-item h4 {
-      margin: 0 0 6px;
-      font-size: 16px;
-    }
-
-    .faq-item p {
-      margin: 0;
-      color: var(--muted);
+    .links-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px 18px;
       font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .links-row a:hover {
+      color: var(--text);
     }
 
     footer {
-      border-top: 1px solid var(--line);
-      padding: 22px 0 30px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    footer .container {
+      position: relative;
+      z-index: 10;
+      padding: 20px 0 28px;
       text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--line);
     }
 
     footer a:hover {
-      color: var(--ink);
+      color: var(--text);
     }
 
-    @media (max-width: 980px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .feature-grid,
-      .steps {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .compare-grid,
-      .policy-grid,
-      .cta-box {
-        grid-template-columns: 1fr;
-      }
-
-      .float-card {
-        left: 8px;
-      }
-
-      .paw-badge {
-        right: 8px;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .nav {
-        display: none;
-      }
-
-      .hero {
-        padding-top: 36px;
-      }
-
-      .feature-grid,
-      .steps {
-        grid-template-columns: 1fr;
+    @media (max-width: 480px) {
+      .cta-row {
+        flex-direction: column;
       }
 
       .btn {
         width: 100%;
       }
 
-      .cta-row {
-        width: 100%;
-      }
-
-      .float-card {
-        position: static;
-        margin-bottom: 12px;
-        max-width: none;
-      }
-
-      .paw-badge {
-        width: 56px;
-        right: 12px;
-        bottom: 36px;
+      .platforms {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
       }
     }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <a class="brand" href="#top" aria-label="PocketPet 首页" data-i18n-aria="brand.aria">
-        <img class="logo" src="assets/images/logo.png" alt="PocketPet logo">
-        <span data-i18n="brand.name">灵宠</span>
-      </a>
-      <nav class="nav" aria-label="主导航">
-        <a href="#features" data-i18n="nav.features">核心功能</a>
-        <a href="#how" data-i18n="nav.how">如何开始</a>
-        <a href="#why" data-i18n="nav.why">为什么选择</a>
-        <a href="#support" data-i18n="nav.support">支持与 FAQ</a>
-      </nav>
-      <div class="lang-switch" role="group" aria-label="Language Switch">
-        <button id="lang-zh" class="lang-btn" type="button">中文</button>
-        <button id="lang-en" class="lang-btn" type="button">EN</button>
-      </div>
-    </div>
-  </header>
+  <div class="page">
+    <div class="orb orb-1" aria-hidden="true"></div>
+    <div class="orb orb-2" aria-hidden="true"></div>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <span class="eyebrow" data-i18n="hero.eyebrow">零门槛 · 虚拟宠物陪伴</span>
-          <h1 data-i18n-html="hero.title">给它一个名字，<br>开始你的口袋陪伴</h1>
-          <p class="lead" data-i18n="hero.lead">
-            灵宠 PocketPet 是一款以陪伴感为核心的虚拟宠物 App。无需注册登录，两步完成初始化，
-            全屏本地动画让小狗始终在场，轻触爪垫即可互动。
-          </p>
-          <div class="cta-row">
-            <span class="btn btn-soon" data-i18n="hero.comingSoon">iOS / Android 即将上线</span>
-            <a class="btn btn-ghost" href="#features" data-i18n="hero.featureBtn">了解功能</a>
-          </div>
-          <p class="meta" data-i18n="hero.meta">支持 iOS 与 Android · 动画本地播放，不依赖网络 · 中英文双语</p>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="#top" aria-label="PocketPet 首页" data-i18n-aria="brand.aria">
+          <img class="logo" src="assets/images/logo.png" alt="PocketPet logo">
+          <span data-i18n="brand.name">灵宠</span>
+        </a>
+        <div class="lang-switch" role="group" aria-label="Language Switch">
+          <button id="lang-zh" class="lang-btn" type="button">中文</button>
+          <button id="lang-en" class="lang-btn" type="button">EN</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <div class="container hero">
+        <div class="pet-wrap">
+          <div class="pet-glow" aria-hidden="true"></div>
+          <img class="pet-img" src="assets/images/pet-hero.png" alt="灵宠小狗" data-i18n-alt="hero.petAlt">
+          <img class="paw-float paw-1" src="assets/images/paw-full.png" alt="" aria-hidden="true">
+          <img class="paw-float paw-2" src="assets/images/paw-full.png" alt="" aria-hidden="true">
         </div>
 
-        <aside class="hero-visual" aria-label="应用界面预览" data-i18n-aria="preview.aria">
-          <div class="float-card">
-            <strong data-i18n="preview.floatTitle">2 屏即可开始</strong>
-            <span data-i18n="preview.floatDesc">欢迎 → 取名 → 全屏陪伴</span>
-          </div>
-          <div class="phone-frame">
-            <div class="phone-screen">
-              <img class="hero-pet" src="assets/images/pet-hero.png" alt="灵宠小狗主页预览" data-i18n-alt="preview.petAlt">
-              <div class="phone-overlay">
-                <div class="pet-name" data-i18n="preview.petName">糯米</div>
-                <div class="companion" data-i18n="preview.companion">陪伴天数：12 天</div>
-              </div>
-            </div>
-          </div>
-          <img class="paw-badge" src="assets/images/paw-full.png" alt="" aria-hidden="true">
-        </aside>
-      </div>
-    </section>
+        <div class="status-badge">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span data-i18n="hero.status">即将上线</span>
+        </div>
 
-    <section id="features">
-      <div class="container">
-        <h2 class="section-head" data-i18n="features.title">为陪伴而设计</h2>
-        <p class="section-sub" data-i18n="features.sub">
-          没有复杂养成，没有账号打扰。灵宠把「宠物在场」放在第一位——打开 App，就是和它相处。
+        <h1 data-i18n-html="hero.title">一只小狗，<br>正在赶来</h1>
+        <p class="lead" data-i18n="hero.lead">
+          灵宠 PocketPet 是一款零门槛虚拟宠物陪伴 App。无需注册，取名即陪伴，全屏本地动画，轻触爪垫即可互动。我们正在打磨最后细节，很快与你见面。
         </p>
-        <div class="feature-grid">
-          <article class="card">
-            <div class="icon">🚪</div>
-            <h3 data-i18n="features.f1t">零门槛开始</h3>
-            <p data-i18n="features.f1d">无需注册或登录，安装后打开即用，30 秒内进入主页。</p>
-          </article>
-          <article class="card">
-            <div class="icon">✏️</div>
-            <h3 data-i18n="features.f2t">专属取名</h3>
-            <p data-i18n="features.f2d">给它取个名字，建立归属感。支持中英文与随机名建议。</p>
-          </article>
-          <article class="card">
-            <div class="icon">🎬</div>
-            <h3 data-i18n="features.f3t">全屏沉浸动画</h3>
-            <p data-i18n="features.f3d">本地 MP4 循环播放，宠物占满屏幕，弱化传统 App 信息架构。</p>
-          </article>
-          <article class="card">
-            <div class="icon">🐾</div>
-            <h3 data-i18n="features.f4t">爪垫轻触互动</h3>
-            <p data-i18n="features.f4d">打招呼、睡觉、伸懒腰、跑步——四种动作，一键切换。</p>
-          </article>
-          <article class="card">
-            <div class="icon">📅</div>
-            <h3 data-i18n="features.f5t">陪伴天数记录</h3>
-            <p data-i18n="features.f5d">默默记录你们相处的每一天，让陪伴有迹可循。</p>
-          </article>
-          <article class="card">
-            <div class="icon">🌐</div>
-            <h3 data-i18n="features.f6t">中英双语</h3>
-            <p data-i18n="features.f6d">跟随系统语言，也可在应用内手动切换中文与 English。</p>
-          </article>
-        </div>
-      </div>
-    </section>
 
-    <section id="how">
-      <div class="container">
-        <h2 class="section-head" data-i18n="how.title">三步，和它见面</h2>
-        <p class="section-sub" data-i18n="how.sub">极简引导流程，没有多余步骤，专注第一次见面的惊喜。</p>
-        <div class="steps">
-          <article class="step">
-            <div class="step-num">1</div>
-            <h3 data-i18n="how.s1t">打开欢迎页</h3>
-            <p data-i18n="how.s1d">一只小狗正在等你。点击「开始」，进入取名环节。</p>
-          </article>
-          <article class="step">
-            <div class="step-num">2</div>
-            <h3 data-i18n="how.s2t">给它取个名字</h3>
-            <p data-i18n="how.s2d">输入 1–20 个字符，或点「换一个」试试随机昵称。</p>
-          </article>
-          <article class="step">
-            <div class="step-num">3</div>
-            <h3 data-i18n="how.s3t">全屏相处</h3>
-            <p data-i18n="how.s3d">进入主页，动画自动循环。展开爪垫，和它互动玩耍。</p>
-          </article>
+        <div class="teasers">
+          <span class="teaser"><span>🚪</span> <span data-i18n="teaser.t1">无需登录</span></span>
+          <span class="teaser"><span>🎬</span> <span data-i18n="teaser.t2">全屏动画</span></span>
+          <span class="teaser"><span>🐾</span> <span data-i18n="teaser.t3">爪垫互动</span></span>
+          <span class="teaser"><span>📴</span> <span data-i18n="teaser.t4">离线可用</span></span>
         </div>
-      </div>
-    </section>
 
-    <section id="why">
-      <div class="container">
-        <h2 class="section-head" data-i18n="why.title">和其它宠物 App 不一样</h2>
-        <p class="section-sub" data-i18n="why.sub">灵宠不做功能堆叠，只做一件事——让你随时感受到「它在这里」。</p>
-        <div class="compare-grid">
-          <article class="compare-panel us">
-            <h3 data-i18n="why.usTitle">灵宠 PocketPet</h3>
-            <ul>
-              <li data-i18n="why.us1">无账号、无商城、无任务系统</li>
-              <li data-i18n="why.us2">全屏宠物动画，视觉沉浸</li>
-              <li data-i18n="why.us3">动画本地播放，离线也能陪伴</li>
-              <li data-i18n="why.us4">昵称仅本地存储，隐私友好</li>
-            </ul>
-          </article>
-          <article class="compare-panel them">
-            <h3 data-i18n="why.themTitle">常见宠物 App</h3>
-            <ul>
-              <li data-i18n="why.them1">注册登录、社交与内购</li>
-              <li data-i18n="why.them2">卡片式 UI，信息密度高</li>
-              <li data-i18n="why.them3">依赖网络与复杂养成循环</li>
-              <li data-i18n="why.them4">收集大量用户与行为数据</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta" id="download">
-      <div class="container">
-        <div class="cta-box">
-          <div>
-            <h2 class="cta-title" data-i18n="cta.title">口袋里的温柔陪伴</h2>
-            <p class="cta-text" data-i18n="cta.text">
-              灵宠正在准备上架 App Store 与 Google Play。想第一时间体验，欢迎通过邮箱联系我们。
-            </p>
-          </div>
-          <div class="cta-actions">
-            <span class="btn btn-soon" data-i18n="cta.comingSoon">下载即将开放</span>
+        <div class="cta-block">
+          <p class="cta-label" data-i18n="cta.label">想第一时间体验？欢迎联系我们</p>
+          <div class="cta-row">
             <a class="btn btn-primary" href="mailto:deqiutseng@gmail.com" data-i18n="cta.contact">联系开发者</a>
+            <a class="btn btn-ghost" href="privacy.html" data-i18n="cta.privacy">隐私政策</a>
+          </div>
+          <div class="platforms">
+            <span class="platform">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+              <span data-i18n="platform.ios">iOS 筹备中</span>
+            </span>
+            <span class="platform">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24a11.5 11.5 0 0 0-8.94 0L5.65 5.67c-.19-.28-.55-.37-.84-.22-.3.16-.42.54-.26.85l1.84 3.18C3.92 11.03 2 14.22 2 18h20c0-3.78-1.92-6.97-4.4-8.52zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg>
+              <span data-i18n="platform.android">Android 筹备中</span>
+            </span>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section id="support">
+        <nav class="links-row" aria-label="相关链接">
+          <a href="mailto:deqiutseng@gmail.com">deqiutseng@gmail.com</a>
+          <a href="privacy.html" data-i18n="footer.privacy">用户隐私</a>
+          <a href="sdklist.html" data-i18n="footer.sdk">第三方 SDK 列表</a>
+        </nav>
+      </div>
+    </main>
+
+    <footer>
       <div class="container">
-        <h2 class="section-head" data-i18n="support.title">隐私 / 联系方式 / 常见问题</h2>
-        <p class="section-sub" data-i18n="support.sub">我们重视数据安全与用户反馈，欢迎通过邮箱提出建议或合作意向。</p>
-        <div class="policy-grid">
-          <article class="card">
-            <div class="icon">🔒</div>
-            <h3 data-i18n="privacy.title">隐私政策</h3>
-            <p>
-              <span data-i18n="privacy.prefix">灵宠仅在功能必要范围内使用数据，昵称等信息保存在本地设备。</span>
-              <a href="privacy.html" data-i18n="privacy.link">查看隐私政策全文</a><span data-i18n="privacy.suffix">。</span>
-            </p>
-          </article>
-          <article class="card">
-            <div class="icon">✉️</div>
-            <h3 data-i18n="contact.title">联系邮箱</h3>
-            <p>
-              <span data-i18n="contact.prefix">反馈与合作请联系：</span>
-              <a href="mailto:deqiutseng@gmail.com">deqiutseng@gmail.com</a>
-            </p>
-          </article>
-        </div>
-
-        <div class="card" style="margin-top:14px;">
-          <h3 data-i18n="faq.title">常见问题 FAQ</h3>
-          <ul class="faq-list" style="margin-top:12px;">
-            <li class="faq-item">
-              <h4 data-i18n="faq.q1">1. 需要注册账号吗？</h4>
-              <p data-i18n="faq.a1">不需要。灵宠无需登录，打开 App 即可使用全部功能。</p>
-            </li>
-            <li class="faq-item">
-              <h4 data-i18n="faq.q2">2. 没有网络能玩吗？</h4>
-              <p data-i18n="faq.a2">可以。宠物动画为本地资源，初始化与主页互动不依赖网络。</p>
-            </li>
-            <li class="faq-item">
-              <h4 data-i18n="faq.q3">3. 可以和宠物做哪些互动？</h4>
-              <p data-i18n="faq.a3">通过底部爪垫可触发打招呼、睡觉、伸懒腰、跑步四种动作；空闲时宠物也会自己伸懒腰或睡觉。</p>
-            </li>
-            <li class="faq-item">
-              <h4 data-i18n="faq.q4">4. 什么时候可以下载？</h4>
-              <p data-i18n="faq.a4">应用正在上架筹备中。请关注本页面更新，或通过邮箱联系我们获取内测信息。</p>
-            </li>
-          </ul>
-        </div>
+        <strong data-i18n="brand.name">灵宠</strong> PocketPet ·
+        <span data-i18n="footer.tagline">口袋里的虚拟宠物陪伴</span> ·
+        <span data-i18n="footer.rights">© 2026</span>
       </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <strong data-i18n="brand.name">灵宠</strong> PocketPet · <span data-i18n="footer.tagline">口袋里的虚拟宠物陪伴</span> ·
-      <span data-i18n="footer.contact">联系方式：</span>
-      <a href="mailto:deqiutseng@gmail.com">deqiutseng@gmail.com</a> ·
-      <a href="privacy.html" data-i18n="footer.privacy">用户隐私</a> ·
-      <a href="sdklist.html" data-i18n="footer.sdk">第三方 SDK 列表</a>
-    </div>
-  </footer>
+    </footer>
+  </div>
 
   <script>
     (function () {
       var i18n = {
         zh: {
-          "site.title": "灵宠 PocketPet - 口袋里的虚拟宠物陪伴",
-          "site.description": "灵宠 PocketPet：零门槛虚拟宠物陪伴 App。给它取个名字，全屏互动，本地动画，无需登录。",
+          "site.title": "灵宠 PocketPet - 即将上线",
+          "site.description": "灵宠 PocketPet：零门槛虚拟宠物陪伴 App，即将上线。给它取个名字，全屏互动，本地动画，无需登录。",
           "brand.name": "灵宠",
           "brand.aria": "灵宠首页",
-          "nav.features": "核心功能",
-          "nav.how": "如何开始",
-          "nav.why": "为什么选择",
-          "nav.support": "支持与 FAQ",
-          "hero.eyebrow": "零门槛 · 虚拟宠物陪伴",
-          "hero.title": "给它一个名字，<br>开始你的口袋陪伴",
-          "hero.lead": "灵宠 PocketPet 是一款以陪伴感为核心的虚拟宠物 App。无需注册登录，两步完成初始化，全屏本地动画让小狗始终在场，轻触爪垫即可互动。",
-          "hero.comingSoon": "iOS / Android 即将上线",
-          "hero.featureBtn": "了解功能",
-          "hero.meta": "支持 iOS 与 Android · 动画本地播放，不依赖网络 · 中英文双语",
-          "preview.aria": "应用界面预览",
-          "preview.floatTitle": "2 屏即可开始",
-          "preview.floatDesc": "欢迎 → 取名 → 全屏陪伴",
-          "preview.petAlt": "灵宠小狗主页预览",
-          "preview.petName": "糯米",
-          "preview.companion": "陪伴天数：12 天",
-          "features.title": "为陪伴而设计",
-          "features.sub": "没有复杂养成，没有账号打扰。灵宠把「宠物在场」放在第一位——打开 App，就是和它相处。",
-          "features.f1t": "零门槛开始",
-          "features.f1d": "无需注册或登录，安装后打开即用，30 秒内进入主页。",
-          "features.f2t": "专属取名",
-          "features.f2d": "给它取个名字，建立归属感。支持中英文与随机名建议。",
-          "features.f3t": "全屏沉浸动画",
-          "features.f3d": "本地 MP4 循环播放，宠物占满屏幕，弱化传统 App 信息架构。",
-          "features.f4t": "爪垫轻触互动",
-          "features.f4d": "打招呼、睡觉、伸懒腰、跑步——四种动作，一键切换。",
-          "features.f5t": "陪伴天数记录",
-          "features.f5d": "默默记录你们相处的每一天，让陪伴有迹可循。",
-          "features.f6t": "中英双语",
-          "features.f6d": "跟随系统语言，也可在应用内手动切换中文与 English。",
-          "how.title": "三步，和它见面",
-          "how.sub": "极简引导流程，没有多余步骤，专注第一次见面的惊喜。",
-          "how.s1t": "打开欢迎页",
-          "how.s1d": "一只小狗正在等你。点击「开始」，进入取名环节。",
-          "how.s2t": "给它取个名字",
-          "how.s2d": "输入 1–20 个字符，或点「换一个」试试随机昵称。",
-          "how.s3t": "全屏相处",
-          "how.s3d": "进入主页，动画自动循环。展开爪垫，和它互动玩耍。",
-          "why.title": "和其它宠物 App 不一样",
-          "why.sub": "灵宠不做功能堆叠，只做一件事——让你随时感受到「它在这里」。",
-          "why.usTitle": "灵宠 PocketPet",
-          "why.us1": "无账号、无商城、无任务系统",
-          "why.us2": "全屏宠物动画，视觉沉浸",
-          "why.us3": "动画本地播放，离线也能陪伴",
-          "why.us4": "昵称仅本地存储，隐私友好",
-          "why.themTitle": "常见宠物 App",
-          "why.them1": "注册登录、社交与内购",
-          "why.them2": "卡片式 UI，信息密度高",
-          "why.them3": "依赖网络与复杂养成循环",
-          "why.them4": "收集大量用户与行为数据",
-          "cta.title": "口袋里的温柔陪伴",
-          "cta.text": "灵宠正在准备上架 App Store 与 Google Play。想第一时间体验，欢迎通过邮箱联系我们。",
-          "cta.comingSoon": "下载即将开放",
+          "hero.status": "即将上线",
+          "hero.title": "一只小狗，<br>正在赶来",
+          "hero.lead": "灵宠 PocketPet 是一款零门槛虚拟宠物陪伴 App。无需注册，取名即陪伴，全屏本地动画，轻触爪垫即可互动。我们正在打磨最后细节，很快与你见面。",
+          "hero.petAlt": "灵宠小狗",
+          "teaser.t1": "无需登录",
+          "teaser.t2": "全屏动画",
+          "teaser.t3": "爪垫互动",
+          "teaser.t4": "离线可用",
+          "cta.label": "想第一时间体验？欢迎联系我们",
           "cta.contact": "联系开发者",
-          "support.title": "隐私 / 联系方式 / 常见问题",
-          "support.sub": "我们重视数据安全与用户反馈，欢迎通过邮箱提出建议或合作意向。",
-          "privacy.title": "隐私政策",
-          "privacy.prefix": "灵宠仅在功能必要范围内使用数据，昵称等信息保存在本地设备。",
-          "privacy.link": "查看隐私政策全文",
-          "privacy.suffix": "。",
-          "contact.title": "联系邮箱",
-          "contact.prefix": "反馈与合作请联系：",
-          "faq.title": "常见问题 FAQ",
-          "faq.q1": "1. 需要注册账号吗？",
-          "faq.a1": "不需要。灵宠无需登录，打开 App 即可使用全部功能。",
-          "faq.q2": "2. 没有网络能玩吗？",
-          "faq.a2": "可以。宠物动画为本地资源，初始化与主页互动不依赖网络。",
-          "faq.q3": "3. 可以和宠物做哪些互动？",
-          "faq.a3": "通过底部爪垫可触发打招呼、睡觉、伸懒腰、跑步四种动作；空闲时宠物也会自己伸懒腰或睡觉。",
-          "faq.q4": "4. 什么时候可以下载？",
-          "faq.a4": "应用正在上架筹备中。请关注本页面更新，或通过邮箱联系我们获取内测信息。",
+          "cta.privacy": "隐私政策",
+          "platform.ios": "iOS 筹备中",
+          "platform.android": "Android 筹备中",
           "footer.tagline": "口袋里的虚拟宠物陪伴",
-          "footer.contact": "联系方式：",
           "footer.privacy": "用户隐私",
-          "footer.sdk": "第三方 SDK 列表"
+          "footer.sdk": "第三方 SDK 列表",
+          "footer.rights": "© 2026"
         },
         en: {
-          "site.title": "PocketPet - Your Pocket Virtual Companion",
-          "site.description": "PocketPet: a zero-friction virtual pet companion. Name your pet, enjoy full-screen local animations, and interact without signing in.",
+          "site.title": "PocketPet - Coming Soon",
+          "site.description": "PocketPet: a zero-friction virtual pet companion app, coming soon. Name your pet, enjoy full-screen local animations, no sign-in required.",
           "brand.name": "PocketPet",
           "brand.aria": "PocketPet Home",
-          "nav.features": "Features",
-          "nav.how": "How It Works",
-          "nav.why": "Why PocketPet",
-          "nav.support": "Support & FAQ",
-          "hero.eyebrow": "Zero friction · Virtual companionship",
-          "hero.title": "Give it a name,<br>start your pocket companion",
-          "hero.lead": "PocketPet is built around one feeling: your pet is always there. No sign-up, a two-step setup, full-screen local animations, and paw-pad interactions—just open the app and spend time together.",
-          "hero.comingSoon": "iOS / Android coming soon",
-          "hero.featureBtn": "Explore features",
-          "hero.meta": "iOS & Android · Local animations, no network required · Chinese & English",
-          "preview.aria": "App preview",
-          "preview.floatTitle": "Ready in 2 screens",
-          "preview.floatDesc": "Welcome → Name → Full-screen companion",
-          "preview.petAlt": "PocketPet puppy home screen preview",
-          "preview.petName": "Mochi",
-          "preview.companion": "Together for 12 days",
-          "features.title": "Designed for companionship",
-          "features.sub": "No complex progression, no account friction. PocketPet puts your pet front and center—the moment you open the app, you're together.",
-          "features.f1t": "Zero setup",
-          "features.f1d": "No registration or login. Install, open, and reach the home screen in under 30 seconds.",
-          "features.f2t": "Name your pet",
-          "features.f2d": "Choose a name that stays with your pet. Supports Chinese, English, and random suggestions.",
-          "features.f3t": "Full-screen immersion",
-          "features.f3d": "Local MP4 loops fill the screen so your pet feels present, not tucked into cards.",
-          "features.f4t": "Paw-pad interactions",
-          "features.f4d": "Greet, sleep, stretch, and run—four playful actions at your fingertips.",
-          "features.f5t": "Companion days",
-          "features.f5d": "Quietly tracks how many days you've been together.",
-          "features.f6t": "Bilingual",
-          "features.f6d": "Follows system language or switch between Chinese and English in-app.",
-          "how.title": "Three steps to meet your pet",
-          "how.sub": "A minimal onboarding flow with no extra steps—just the joy of the first hello.",
-          "how.s1t": "Open the welcome screen",
-          "how.s1d": "A puppy is waiting. Tap Get started to begin naming.",
-          "how.s2t": "Give it a name",
-          "how.s2d": "Enter 1–20 characters, or tap Shuffle for a random suggestion.",
-          "how.s3t": "Spend time together",
-          "how.s3d": "Land on the home screen with looping animation. Expand the paw pad to play.",
-          "why.title": "Not your typical pet app",
-          "why.sub": "PocketPet skips feature bloat and focuses on one thing: making you feel that your pet is here.",
-          "why.usTitle": "PocketPet",
-          "why.us1": "No accounts, shops, or task systems",
-          "why.us2": "Full-screen pet animation for immersion",
-          "why.us3": "Local playback—offline companionship",
-          "why.us4": "Nicknames stored on-device, privacy-friendly",
-          "why.themTitle": "Typical pet apps",
-          "why.them1": "Sign-in, social features, and in-app purchases",
-          "why.them2": "Card-heavy UI with high information density",
-          "why.them3": "Network-dependent progression loops",
-          "why.them4": "Extensive user and behavior data collection",
-          "cta.title": "Gentle company in your pocket",
-          "cta.text": "PocketPet is preparing for App Store and Google Play launch. Want early access? Reach out by email.",
-          "cta.comingSoon": "Download opening soon",
+          "hero.status": "Coming Soon",
+          "hero.title": "A puppy is<br>on its way",
+          "hero.lead": "PocketPet is a zero-friction virtual pet companion. No sign-up, name your pet and start bonding with full-screen local animations and paw-pad interactions. We're polishing the final details—see you soon.",
+          "hero.petAlt": "PocketPet puppy",
+          "teaser.t1": "No sign-in",
+          "teaser.t2": "Full-screen",
+          "teaser.t3": "Paw interactions",
+          "teaser.t4": "Works offline",
+          "cta.label": "Want early access? Get in touch",
           "cta.contact": "Contact developer",
-          "support.title": "Privacy / Contact / FAQ",
-          "support.sub": "We care about data safety and user feedback. Email us with suggestions or partnership ideas.",
-          "privacy.title": "Privacy Policy",
-          "privacy.prefix": "PocketPet uses data only when necessary. Nicknames and pet info stay on your device.",
-          "privacy.link": "Read the full Privacy Policy",
-          "privacy.suffix": ".",
-          "contact.title": "Contact Email",
-          "contact.prefix": "For feedback or collaboration:",
-          "faq.title": "FAQ",
-          "faq.q1": "1. Do I need an account?",
-          "faq.a1": "No. PocketPet requires no login—open the app and you're ready.",
-          "faq.q2": "2. Does it work offline?",
-          "faq.a2": "Yes. Pet animations are bundled locally; onboarding and home interactions don't need the network.",
-          "faq.q3": "3. What interactions are available?",
-          "faq.a3": "Use the paw pad for greet, sleep, stretch, and run. When idle, your pet may stretch or nap on its own.",
-          "faq.q4": "4. When can I download it?",
-          "faq.a4": "We're preparing store listings. Watch this page for updates, or email us for beta info.",
+          "cta.privacy": "Privacy Policy",
+          "platform.ios": "iOS in progress",
+          "platform.android": "Android in progress",
           "footer.tagline": "Your pocket virtual companion",
-          "footer.contact": "Contact:",
           "footer.privacy": "Privacy Policy",
-          "footer.sdk": "Third-Party SDK List"
+          "footer.sdk": "Third-Party SDK List",
+          "footer.rights": "© 2026"
         }
       };
 
