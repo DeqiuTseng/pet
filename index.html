@@ -181,13 +181,13 @@
 
     .pet-wrap {
       position: relative;
-      width: min(220px, 52vw);
+      width: min(200px, 48vw);
       margin: 0 auto 28px;
     }
 
     .pet-glow {
       position: absolute;
-      inset: -20%;
+      inset: -24%;
       border-radius: 50%;
       background: radial-gradient(circle, var(--glow-ring) 0%, transparent 70%);
       animation: pulse 3s ease-in-out infinite;
@@ -198,14 +198,21 @@
       50% { opacity: 1; transform: scale(1.05); }
     }
 
-    .pet-img {
+    .pet-frame {
       position: relative;
       width: 100%;
       aspect-ratio: 1;
-      object-fit: cover;
       border-radius: 50%;
+      overflow: hidden;
       border: 2px solid var(--line);
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .pet-img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .paw-float {
@@ -452,7 +459,9 @@
       <div class="container hero">
         <div class="pet-wrap">
           <div class="pet-glow" aria-hidden="true"></div>
-          <img class="pet-img" src="assets/images/pet-hero.png" alt="灵宠小狗" data-i18n-alt="hero.petAlt">
+          <div class="pet-frame">
+            <img class="pet-img" src="assets/images/logo.png" alt="灵宠" data-i18n-alt="hero.petAlt">
+          </div>
           <img class="paw-float paw-1" src="assets/images/paw-full.png" alt="" aria-hidden="true">
           <img class="paw-float paw-2" src="assets/images/paw-full.png" alt="" aria-hidden="true">
         </div>
